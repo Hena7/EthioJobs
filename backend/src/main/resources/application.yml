@@ -1,0 +1,103 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ethiojobs-backend
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ethiojobs
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          batch_size: 20
+        default_batch_fetch_size: 16
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    date-format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+    time-zone: UTC
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB
+      max-request-size: 10MB
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=500,expireAfterWrite=10m
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID:}
+            client-secret: ${GOOGLE_CLIENT_SECRET:}
+            scope:
+              - email
+              - profile
+
+app:
+  jwt:
+    access-token-expiration: 900000
+    refresh-token-expiration: 604800000
+    secret: ${JWT_SECRET:ethiojobs-secret-key-change-in-production-must-be-at-least-256-bits-long}
+
+  upload:
+    dir: ${UPLOAD_DIR:./uploads}
+    resume-allowed-extensions: pdf
+    logo-allowed-extensions: png,jpg,jpeg,svg
+
+  frontend-url: ${FRONTEND_URL:http://localhost:3000}
+
+  rate-limit:
+    auth:
+      capacity: 5
+      refill-tokens: 5
+      refill-duration-minutes: 1
+
+springdoc:
+  api-docs:
+    path: /api/docs
+  swagger-ui:
+    path: /api/swagger-ui.html
+    operations-sorter: method
+
+logging:
+  level:
+    com.ethiojobs: DEBUG
+    org.springframework.security: INFO
