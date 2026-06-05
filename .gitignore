@@ -44,6 +44,9 @@ next-env.d.ts
 dist
 /target
 
+# frontend
+/frontend/node_modules/
+
 # vscode
 .vscode/*
 !.vscode/settings.json
