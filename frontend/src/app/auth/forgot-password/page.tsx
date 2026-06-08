@@ -5,9 +5,10 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Mail, ArrowLeft, Send, CheckCircle2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
 import {
   Card,
   CardContent,
@@ -64,11 +65,12 @@ export default function ForgotPasswordPage() {
               If an account with that email exists, we have sent a password
               reset link. Please check your inbox and spam folder.
             </p>
-            <Link href="/auth/login">
-              <Button variant="outline" className="mt-2">
-                <ArrowLeft className="mr-2 size-4" />
-                Back to login
-              </Button>
+            <Link
+              href="/auth/login"
+              className={cn(buttonVariants({ variant: 'outline' }), "mt-2 w-full")}
+            >
+              <ArrowLeft className="mr-2 size-4" />
+              Back to login
             </Link>
           </div>
         ) : (

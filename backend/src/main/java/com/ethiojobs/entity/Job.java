@@ -70,9 +70,11 @@ public class Job {
     private Company company;
 
     @OneToMany(mappedBy = "job", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
     private List<Application> applications = new ArrayList<>();
 
     @OneToMany(mappedBy = "job", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
     private List<Bookmark> bookmarks = new ArrayList<>();
 
     @PrePersist

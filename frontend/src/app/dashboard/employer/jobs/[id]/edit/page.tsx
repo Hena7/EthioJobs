@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { Loader2, Trash2, AlertCircle } from 'lucide-react';
 import { jobSchema, type JobFormData } from '@/schemas';
 import { useJob, useUpdateJob, useDeleteJob } from '@/hooks/useJobs';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
@@ -151,11 +151,9 @@ export default function EditJobPage() {
           <p className="text-sm text-muted-foreground">{job.title}</p>
         </div>
         <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
-          <DialogTrigger asChild>
-            <Button variant="destructive" size="sm">
-              <Trash2 className="size-4" />
-              Delete Job
-            </Button>
+          <DialogTrigger className={buttonVariants({ variant: 'destructive', size: 'sm' })}>
+            <Trash2 className="size-4" />
+            Delete Job
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
@@ -358,8 +356,8 @@ export default function EditJobPage() {
         </Card>
 
         <div className="flex items-center justify-between">
-          <Link href="/dashboard/employer/jobs">
-            <Button variant="outline">Cancel</Button>
+          <Link href="/dashboard/employer/jobs" className={buttonVariants({ variant: 'outline' })}>
+            Cancel
           </Link>
           <Button type="submit" disabled={isUpdating}>
             {isUpdating ? <Loader2 className="size-4 animate-spin" /> : null}

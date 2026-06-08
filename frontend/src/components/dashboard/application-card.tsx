@@ -15,7 +15,7 @@ import {
 import Link from 'next/link';
 import { cn, timeAgo, getInitials, formatDate } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import type { Application, ApplicationStatus } from '@/types';
+import { ApplicationStatus, type Application } from '@/types';
 
 interface ApplicationCardProps {
   application: Application;
@@ -26,27 +26,27 @@ const statusConfig: Record<
   ApplicationStatus,
   { label: string; color: string; icon: React.ReactNode }
 > = {
-  PENDING: {
+  [ApplicationStatus.PENDING]: {
     label: 'Pending',
     color: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400',
     icon: <Clock className="size-3.5" />,
   },
-  REVIEWED: {
+  [ApplicationStatus.REVIEWED]: {
     label: 'Reviewed',
     color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
     icon: <Eye className="size-3.5" />,
   },
-  SHORTLISTED: {
+  [ApplicationStatus.SHORTLISTED]: {
     label: 'Shortlisted',
     color: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
     icon: <UserCheck className="size-3.5" />,
   },
-  REJECTED: {
+  [ApplicationStatus.REJECTED]: {
     label: 'Rejected',
     color: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
     icon: <X className="size-3.5" />,
   },
-  HIRED: {
+  [ApplicationStatus.HIRED]: {
     label: 'Hired',
     color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
     icon: <Star className="size-3.5" />,
@@ -54,15 +54,15 @@ const statusConfig: Record<
 };
 
 const statusOrder: ApplicationStatus[] = [
-  'PENDING',
-  'REVIEWED',
-  'SHORTLISTED',
-  'HIRED',
+  ApplicationStatus.PENDING,
+  ApplicationStatus.REVIEWED,
+  ApplicationStatus.SHORTLISTED,
+  ApplicationStatus.HIRED,
 ];
 
 function StatusTimeline({ status }: { status: ApplicationStatus }) {
   const currentIdx = statusOrder.indexOf(status);
-  const isRejected = status === 'REJECTED';
+  const isRejected = status === ApplicationStatus.REJECTED;
 
   if (isRejected) {
     return (
@@ -105,11 +105,11 @@ function StatusTimeline({ status }: { status: ApplicationStatus }) {
           <div key={s} className="flex items-center gap-2">
             <div
               className={cn(
-                'flex size-6 items-center justify-center rounded-full text-xs',
+                'flex size-6 items-center justify-center rounded-full text-xs transition-colors duration-300',
                 completed
-                  ? 'bg-primary text-primary-foreground'
+                  ? 'bg-gradient-to-r from-primary to-teal-500 text-primary-foreground shadow-sm'
                   : 'bg-muted text-muted-foreground',
-                isCurrent && 'ring-2 ring-primary/30',
+                isCurrent && 'ring-4 ring-primary/20',
               )}
             >
               <Icon className="size-3" />
@@ -140,7 +140,7 @@ export function ApplicationCard({
   return (
     <div
       className={cn(
-        'rounded-lg border bg-card p-5 text-card-foreground shadow-sm transition-shadow hover:shadow-md',
+        'group rounded-xl border bg-card/90 backdrop-blur-sm p-5 text-card-foreground shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/20 hover:-translate-y-0.5',
         className,
       )}
     >

@@ -10,7 +10,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      router.replace('/login');
+      router.replace('/auth/login');
       return;
     }
     switch (user?.role) {
@@ -24,7 +24,7 @@ export default function DashboardPage() {
         router.replace('/dashboard/admin');
         break;
       default:
-        router.replace('/login');
+        router.replace('/auth/login');
     }
   }, [user, isAuthenticated, router]);
 

@@ -161,7 +161,7 @@ export function FileUpload({
           </div>
           <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
             <div
-              className="h-full rounded-full bg-primary transition-all duration-300"
+              className="h-full rounded-full bg-gradient-to-r from-primary to-teal-500 transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>

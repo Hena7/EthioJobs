@@ -18,7 +18,7 @@ import {
   Building2,
   Medal,
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import {
@@ -30,11 +30,10 @@ import {
 } from '@/components/ui/select';
 import { JobCard } from '@/components/jobs/job-card';
 import { JobCardSkeleton } from '@/components/shared/loading-skeleton';
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
 import { useJobs } from '@/hooks/useJobs';
 import { CATEGORIES } from '@/lib/constants';
 import type { Job } from '@/types';
+import { cn } from '@/lib/utils';
 
 const categoryIcons = [Code2, Blocks, BrainCircuit, Palette, Megaphone, TrendingUp];
 
@@ -62,9 +61,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Header />
-      <main className="flex-1">
-        <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-primary/10 py-20 sm:py-28">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-primary/10 py-20 sm:py-28">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-blue-500/5 via-transparent to-transparent" />
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
@@ -180,11 +177,12 @@ export default function HomePage() {
                   Reach thousands of qualified candidates across Ethiopia. Find
                   the perfect match for your team.
                 </p>
-                <Link href="/auth/register?role=employer">
-                  <Button size="lg">
-                    Post a Job
-                    <ArrowRight className="ml-2 size-4" />
-                  </Button>
+                <Link
+                  href="/auth/register?role=employer"
+                  className={buttonVariants({ size: 'lg' })}
+                >
+                  Post a Job
+                  <ArrowRight className="ml-2 size-4" />
                 </Link>
               </CardContent>
             </Card>
@@ -196,11 +194,12 @@ export default function HomePage() {
                   Discover opportunities that match your skills. Take the next
                   step in your career today.
                 </p>
-                <Link href="/jobs">
-                  <Button size="lg" className="bg-blue-500 hover:bg-blue-600">
-                    Find a Job
-                    <ArrowRight className="ml-2 size-4" />
-                  </Button>
+                <Link
+                  href="/jobs"
+                  className={cn(buttonVariants({ size: 'lg' }), "bg-blue-500 hover:bg-blue-600")}
+                >
+                  Find a Job
+                  <ArrowRight className="ml-2 size-4" />
                 </Link>
               </CardContent>
             </Card>
@@ -230,8 +229,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
     </>
   );
 }

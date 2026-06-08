@@ -65,7 +65,7 @@ export function PaginationControls({
             className={cn(
               'inline-flex size-8 items-center justify-center rounded-md text-sm font-medium transition-colors',
               page === currentPage
-                ? 'bg-primary text-primary-foreground'
+                ? 'bg-gradient-to-r from-primary to-teal-500 text-primary-foreground shadow-sm'
                 : 'text-muted-foreground hover:bg-muted hover:text-foreground',
             )}
             aria-current={page === currentPage ? 'page' : undefined}

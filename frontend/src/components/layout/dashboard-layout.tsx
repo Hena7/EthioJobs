@@ -12,7 +12,8 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
     <div className="flex min-h-[calc(100vh-4rem)]">
       <Sidebar />
       <div className="flex flex-1 flex-col">
-        <header className="sticky top-16 z-30 flex h-14 items-center gap-4 border-b border-border bg-background/80 backdrop-blur-md px-4 sm:px-6">
+        <header className="sticky top-16 z-30 flex h-14 items-center gap-4 border-b border-border bg-background/80 backdrop-blur-xl px-4 sm:px-6 relative">
+          <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
           <button
             onClick={toggleSidebar}
             className="md:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"

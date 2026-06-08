@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
 import {
   LayoutDashboard,
   Briefcase,
@@ -72,14 +73,22 @@ export default function Sidebar() {
             key={item.href}
             href={item.href}
             onClick={closeSidebar}
-            className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+            className={`group relative flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
               isActive
-                ? 'bg-primary/10 text-primary'
-                : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                ? 'bg-primary/10 text-primary shadow-sm'
+                : 'text-muted-foreground hover:bg-muted hover:text-foreground'
             }`}
           >
-            <Icon className="size-4 shrink-0" />
+            <div className={cn(
+              "flex size-8 items-center justify-center rounded-md transition-colors",
+              isActive ? "bg-primary/20" : "group-hover:bg-muted-foreground/10"
+            )}>
+              <Icon className="size-4 shrink-0" />
+            </div>
             {item.label}
+            {isActive && (
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 h-8 w-1 rounded-r-full bg-primary" />
+            )}
           </Link>
         );
       })}

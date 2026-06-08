@@ -28,8 +28,8 @@ export function EmptyState({
         className,
       )}
     >
-      <div className="mb-4 flex size-16 items-center justify-center rounded-full bg-muted">
-        <Icon className="size-8 text-muted-foreground" />
+      <div className="mb-4 flex size-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-teal-500/20 shadow-inner border border-primary/10">
+        <Icon className="size-8 text-primary/80" />
       </div>
       <h3 className="mb-1 text-lg font-semibold text-foreground">{title}</h3>
       {description && (

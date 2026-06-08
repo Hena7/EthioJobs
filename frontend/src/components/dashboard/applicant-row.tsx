@@ -15,7 +15,7 @@ import { cn, timeAgo, getInitials } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { APPLICATION_STATUS_OPTIONS } from '@/lib/constants';
 import { toast } from 'sonner';
-import type { Application, ApplicationStatus } from '@/types';
+import { ApplicationStatus, type Application } from '@/types';
 
 interface ApplicantRowProps {
   application: Application;
@@ -28,19 +28,19 @@ const statusColors: Record<
   ApplicationStatus,
   string
 > = {
-  PENDING: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400',
-  REVIEWED: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
-  SHORTLISTED: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
-  REJECTED: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
-  HIRED: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
+  [ApplicationStatus.PENDING]: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400',
+  [ApplicationStatus.REVIEWED]: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+  [ApplicationStatus.SHORTLISTED]: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
+  [ApplicationStatus.REJECTED]: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+  [ApplicationStatus.HIRED]: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
 };
 
 const statusIcons: Record<ApplicationStatus, React.ReactNode> = {
-  PENDING: <Clock className="size-3.5" />,
-  REVIEWED: <Eye className="size-3.5" />,
-  SHORTLISTED: <UserCheck className="size-3.5" />,
-  REJECTED: <X className="size-3.5" />,
-  HIRED: <Star className="size-3.5" />,
+  [ApplicationStatus.PENDING]: <Clock className="size-3.5" />,
+  [ApplicationStatus.REVIEWED]: <Eye className="size-3.5" />,
+  [ApplicationStatus.SHORTLISTED]: <UserCheck className="size-3.5" />,
+  [ApplicationStatus.REJECTED]: <X className="size-3.5" />,
+  [ApplicationStatus.HIRED]: <Star className="size-3.5" />,
 };
 
 export function ApplicantRow({
@@ -57,7 +57,7 @@ export function ApplicantRow({
   return (
     <div
       className={cn(
-        'flex flex-wrap items-center gap-4 border-b px-4 py-4 last:border-b-0',
+        'group flex flex-wrap items-center gap-4 border-b px-4 py-4 last:border-b-0 transition-colors hover:bg-muted/30',
         className,
       )}
     >

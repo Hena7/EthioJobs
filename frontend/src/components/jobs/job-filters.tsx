@@ -99,7 +99,7 @@ export function JobFiltersPanel({
     if (debouncedSearch !== (filters.search ?? '')) {
       onFilterChange({ ...filters, search: debouncedSearch || undefined });
     }
-  }, [debouncedSearch]);
+  }, [debouncedSearch, filters, onFilterChange]);
 
   const updateFilter = useCallback(
     (key: keyof JobFilters, value: string | undefined) => {
@@ -146,7 +146,7 @@ export function JobFiltersPanel({
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setSearch(e.target.value)
           }
-          className="h-9 w-full rounded-lg border bg-background pl-9 pr-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="h-10 w-full rounded-xl border bg-background/50 pl-9 pr-3 text-sm outline-none focus-visible:border-primary focus-visible:ring-4 focus-visible:ring-primary/20 transition-all duration-200"
         />
       </div>
 
@@ -315,8 +315,9 @@ export function JobFiltersPanel({
 
       {/* Desktop sidebar */}
       <div className={cn('hidden lg:block', className)}>
-        <div className="rounded-lg border bg-card p-5">
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+        <div className="rounded-xl border bg-card/90 backdrop-blur-sm p-6 shadow-sm sticky top-24">
+          <h2 className="mb-6 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            <SlidersHorizontal className="size-4" />
             Filters
           </h2>
           {filterContent}

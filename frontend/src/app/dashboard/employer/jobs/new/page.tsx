@@ -6,8 +6,9 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Loader2 } from 'lucide-react';
 import { jobSchema, type JobFormData } from '@/schemas';
+import { JobStatus } from '@/types';
 import { useCreateJob } from '@/hooks/useJobs';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
@@ -51,12 +52,12 @@ export default function PostNewJobPage() {
     },
   });
 
-  const onSubmit = (formData: JobFormData, status?: 'ACTIVE' | 'DRAFT') => {
+  const onSubmit = (formData: JobFormData, status?: JobStatus) => {
     createJob(
-      { ...formData, status: status ?? 'ACTIVE' },
+      { ...formData, status: status ?? JobStatus.ACTIVE },
       {
         onSuccess: () => {
-          toast.success(status === 'DRAFT' ? 'Job saved as draft' : 'Job posted successfully');
+          toast.success(status === JobStatus.DRAFT ? 'Job saved as draft' : 'Job posted successfully');
           router.push('/dashboard/employer/jobs');
         },
         onError: () => {
@@ -248,15 +249,15 @@ export default function PostNewJobPage() {
         </Card>
 
         <div className="flex items-center justify-between">
-          <Link href="/dashboard/employer/jobs">
-            <Button variant="outline">Cancel</Button>
+          <Link href="/dashboard/employer/jobs" className={buttonVariants({ variant: 'outline' })}>
+            Cancel
           </Link>
           <div className="flex items-center gap-3">
             <Button
               type="button"
               variant="secondary"
               disabled={isPending}
-              onClick={handleSubmit((data) => onSubmit(data, 'DRAFT'))}
+              onClick={handleSubmit((data) => onSubmit(data, JobStatus.DRAFT))}
             >
               {isPending ? <Loader2 className="size-4 animate-spin" /> : null}
               Save as Draft

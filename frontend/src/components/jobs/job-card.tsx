@@ -39,8 +39,8 @@ export function JobCard({
     <Link
       href={`/jobs/${job.id}`}
       className={cn(
-        'group relative block rounded-lg border bg-card p-5 text-card-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md',
-        job.isFeatured && 'border-amber-300/50 ring-1 ring-amber-300/20',
+        'group relative block rounded-xl border p-5 text-card-foreground shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/30',
+        job.isFeatured ? 'border-primary/20 bg-gradient-to-br from-primary/5 to-transparent' : 'bg-card/90 backdrop-blur-sm',
         className,
       )}
     >
@@ -56,10 +56,10 @@ export function JobCard({
           <img
             src={job.companyLogo}
             alt={`${job.companyName} logo`}
-            className="size-12 rounded-lg object-cover"
+            className="size-12 rounded-xl object-cover shadow-sm transition-transform group-hover:scale-105"
           />
         ) : (
-          <div className="flex size-12 items-center justify-center rounded-lg bg-muted text-sm font-semibold text-muted-foreground">
+          <div className="flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/10 to-teal-500/10 text-sm font-semibold text-primary shadow-sm transition-transform group-hover:scale-105 border border-primary/10">
             {getInitials(job.companyName)}
           </div>
         )}

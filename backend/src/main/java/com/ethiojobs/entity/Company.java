@@ -42,5 +42,6 @@ public class Company {
     private User user;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
     private List<Job> jobs = new ArrayList<>();
 }

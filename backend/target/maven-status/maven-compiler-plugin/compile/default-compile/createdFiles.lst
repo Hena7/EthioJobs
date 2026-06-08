@@ -91,7 +91,6 @@ com\ethiojobs\dto\ResetPasswordRequest$ResetPasswordRequestBuilder.class
 com\ethiojobs\config\CorsConfig.class
 com\ethiojobs\dto\BookmarkDto$BookmarkDtoBuilder.class
 com\ethiojobs\service\JobService.class
-com\ethiojobs\config\SecurityConfig.class
 com\ethiojobs\entity\Application.class
 com\ethiojobs\security\RateLimitingFilter.class
 com\ethiojobs\entity\Notification$NotificationBuilder.class

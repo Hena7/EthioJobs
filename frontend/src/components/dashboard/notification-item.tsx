@@ -36,15 +36,15 @@ function getIcon(type: string): LucideIcon {
 function getIconColor(type: string): string {
   switch (type) {
     case 'JOB_ALERT':
-      return 'bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400';
+      return 'bg-gradient-to-br from-blue-500/20 to-blue-600/10 text-blue-600 dark:text-blue-400';
     case 'APPLICATION_UPDATE':
-      return 'bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400';
+      return 'bg-gradient-to-br from-purple-500/20 to-purple-600/10 text-purple-600 dark:text-purple-400';
     case 'STATUS_CHANGE':
-      return 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400';
+      return 'bg-gradient-to-br from-green-500/20 to-emerald-600/10 text-emerald-600 dark:text-emerald-400';
     case 'INTERVIEW':
-      return 'bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400';
+      return 'bg-gradient-to-br from-amber-500/20 to-amber-600/10 text-amber-600 dark:text-amber-400';
     case 'REJECTION':
-      return 'bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400';
+      return 'bg-gradient-to-br from-red-500/20 to-red-600/10 text-red-600 dark:text-red-400';
     default:
       return 'bg-muted text-muted-foreground';
   }
@@ -90,7 +90,7 @@ export function NotificationItem({
             {notification.title}
           </p>
           {!notification.isRead && (
-            <span className="mt-1 block size-2 shrink-0 rounded-full bg-blue-500" />
+            <span className="mt-1 block size-2.5 shrink-0 rounded-full bg-gradient-to-r from-primary to-teal-500 shadow-[0_0_8px_rgba(var(--primary),0.6)] animate-pulse" />
           )}
         </div>
         <p className="mt-0.5 text-xs text-muted-foreground line-clamp-2">

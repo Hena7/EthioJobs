@@ -37,7 +37,6 @@ const jobSchemaBase = z.object({
 });
 
 export const jobSchema = jobSchemaBase;
-export type JobFormData = z.infer<typeof jobSchemaBase>;
 
 export const applicationSchema = z.object({
   coverLetter: z.string().max(2000, 'Cover letter must be at most 2000 characters').optional(),
