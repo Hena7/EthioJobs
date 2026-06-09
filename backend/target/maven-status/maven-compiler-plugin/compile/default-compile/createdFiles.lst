@@ -7,6 +7,7 @@ com\ethiojobs\exception\ErrorResponse.class
 com\ethiojobs\service\ResumeService.class
 com\ethiojobs\dto\JobDto$JobDtoBuilder.class
 com\ethiojobs\repository\ApplicationRepository.class
+com\ethiojobs\config\PasswordEncoderConfig.class
 com\ethiojobs\entity\Company.class
 com\ethiojobs\security\OAuth2LoginSuccessHandler.class
 com\ethiojobs\exception\GlobalExceptionHandler.class
@@ -17,6 +18,7 @@ com\ethiojobs\repository\NotificationRepository.class
 com\ethiojobs\entity\Job.class
 com\ethiojobs\entity\EmailVerificationToken.class
 com\ethiojobs\dto\ApplicationRequest.class
+com\ethiojobs\config\DatabaseSeeder.class
 com\ethiojobs\dto\UserUpdateRequest$UserUpdateRequestBuilder.class
 com\ethiojobs\dto\NotificationDto.class
 com\ethiojobs\service\NotificationService.class

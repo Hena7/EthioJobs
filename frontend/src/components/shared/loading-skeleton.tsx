@@ -107,6 +107,33 @@ export function DetailSkeleton() {
   );
 }
 
+export function CompanyCardSkeleton() {
+  return (
+    <div className="rounded-xl border p-6">
+      <div className="flex items-start justify-between gap-4">
+        <Skeleton className="size-16 rounded-xl" />
+        <Skeleton className="h-5 w-20 rounded-full" />
+      </div>
+      <div className="mt-4 space-y-2">
+        <Skeleton className="h-6 w-3/4" />
+        <Skeleton className="h-4 w-1/3" />
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-4/5" />
+      </div>
+      <div className="mt-6 space-y-2">
+        <div className="flex gap-4">
+          <Skeleton className="h-4 w-32" />
+          <Skeleton className="h-4 w-28" />
+        </div>
+        <div className="mt-4 flex items-center justify-between border-t border-border pt-4">
+          <Skeleton className="h-4 w-36" />
+          <Skeleton className="size-8 rounded-full" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function ProfileSkeleton() {
   return (
     <div className="space-y-8">

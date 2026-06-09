@@ -1,7 +1,9 @@
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\config\CacheConfig.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\config\CorsConfig.java
+E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\config\DatabaseSeeder.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\config\FileStorageConfig.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\config\OpenApiConfig.java
+E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\config\PasswordEncoderConfig.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\config\ThymeleafMailConfig.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\controller\AdminController.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\controller\ApplicationController.java
