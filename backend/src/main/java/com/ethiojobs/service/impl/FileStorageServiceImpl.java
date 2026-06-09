@@ -55,7 +55,7 @@ public class FileStorageServiceImpl implements FileStorageService {
             Files.createDirectories(targetDir);
             Path target = targetDir.resolve(storedName);
             Files.copy(file.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
-            return subDir + "/" + storedName;
+            return "/uploads/" + subDir + "/" + storedName;
         } catch (IOException e) {
             throw new RuntimeException("Failed to store file " + originalName, e);
         }
@@ -64,7 +64,11 @@ public class FileStorageServiceImpl implements FileStorageService {
     @Override
     public void deleteFile(String fileUrl) {
         try {
-            Path file = uploadPath.resolve(fileUrl).normalize();
+            String relativePath = fileUrl;
+            if (relativePath.startsWith("/uploads/")) {
+                relativePath = relativePath.substring("/uploads/".length());
+            }
+            Path file = uploadPath.resolve(relativePath).normalize();
             if (file.startsWith(uploadPath)) {
                 Files.deleteIfExists(file);
             }

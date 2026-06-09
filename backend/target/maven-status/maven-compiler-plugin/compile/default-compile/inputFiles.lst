@@ -5,6 +5,7 @@ E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\config\FileStorageConf
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\config\OpenApiConfig.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\config\PasswordEncoderConfig.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\config\ThymeleafMailConfig.java
+E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\config\WebConfig.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\controller\AdminController.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\controller\ApplicationController.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\controller\AuthController.java
@@ -12,6 +13,7 @@ E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\controller\BookmarkCon
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\controller\CompanyController.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\controller\JobController.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\controller\NotificationController.java
+E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\controller\ProfileController.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\controller\ResumeController.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\dto\ApiResponse.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\dto\ApplicationDto.java
@@ -26,6 +28,8 @@ E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\dto\ForgotPasswordRequ
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\dto\JobDto.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\dto\JobListResponse.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\dto\JobRequest.java
+E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\dto\JobSeekerProfileDto.java
+E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\dto\JobSeekerProfileRequest.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\dto\LoginRequest.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\dto\NotificationDto.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\dto\ProfileRequest.java
@@ -61,6 +65,7 @@ E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\repository\BookmarkRep
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\repository\CompanyRepository.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\repository\EmailVerificationTokenRepository.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\repository\JobRepository.java
+E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\repository\JobSeekerProfileRepository.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\repository\NotificationRepository.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\repository\RefreshTokenRepository.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\repository\ResumeRepository.java
@@ -84,9 +89,11 @@ E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\service\impl\AuthServi
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\service\impl\BookmarkServiceImpl.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\service\impl\CompanyServiceImpl.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\service\impl\FileStorageServiceImpl.java
+E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\service\impl\JobSeekerProfileServiceImpl.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\service\impl\JobServiceImpl.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\service\impl\NotificationServiceImpl.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\service\impl\ResumeServiceImpl.java
+E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\service\JobSeekerProfileService.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\service\JobService.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\service\NotificationService.java
 E:\projects\EthioJobs\backend\src\main\java\com\ethiojobs\service\ResumeService.java

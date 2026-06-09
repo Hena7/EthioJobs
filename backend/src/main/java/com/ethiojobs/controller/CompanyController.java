@@ -35,6 +35,13 @@ public class CompanyController {
         return ResponseEntity.ok(ApiResponse.success("Company retrieved", company));
     }
 
+    @GetMapping("/mine")
+    @PreAuthorize("hasRole('EMPLOYER')")
+    public ResponseEntity<ApiResponse<CompanyDto>> getMyCompany(@AuthenticationPrincipal CustomUserDetails userDetails) {
+        CompanyDto company = companyService.getCompanyByOwnerEmail(userDetails.getUsername());
+        return ResponseEntity.ok(ApiResponse.success("Company retrieved", company));
+    }
+
     @PutMapping
     @PreAuthorize("hasRole('EMPLOYER')")
     public ResponseEntity<ApiResponse<CompanyDto>> updateCompany(@Valid @RequestBody CompanyRequest request,

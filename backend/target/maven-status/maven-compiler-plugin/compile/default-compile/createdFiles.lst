@@ -17,6 +17,7 @@ com\ethiojobs\entity\User$UserBuilder.class
 com\ethiojobs\repository\NotificationRepository.class
 com\ethiojobs\entity\Job.class
 com\ethiojobs\entity\EmailVerificationToken.class
+com\ethiojobs\dto\JobSeekerProfileDto.class
 com\ethiojobs\dto\ApplicationRequest.class
 com\ethiojobs\config\DatabaseSeeder.class
 com\ethiojobs\dto\UserUpdateRequest$UserUpdateRequestBuilder.class
@@ -30,7 +31,9 @@ com\ethiojobs\entity\JobSeekerProfile$JobSeekerProfileBuilder.class
 com\ethiojobs\dto\RefreshTokenRequest$RefreshTokenRequestBuilder.class
 com\ethiojobs\config\CacheConfig.class
 com\ethiojobs\service\impl\FileStorageServiceImpl.class
+com\ethiojobs\dto\JobSeekerProfileRequest$JobSeekerProfileRequestBuilder.class
 com\ethiojobs\controller\AdminController.class
+com\ethiojobs\controller\ProfileController.class
 com\ethiojobs\dto\ResumeDto$ResumeDtoBuilder.class
 com\ethiojobs\repository\ResumeRepository.class
 com\ethiojobs\repository\CompanyRepository.class
@@ -39,6 +42,7 @@ com\ethiojobs\entity\JobSeekerProfile.class
 com\ethiojobs\dto\AuthResponse$AuthResponseBuilder.class
 com\ethiojobs\exception\ResourceNotFoundException.class
 com\ethiojobs\dto\JobRequest.class
+com\ethiojobs\dto\JobSeekerProfileRequest.class
 com\ethiojobs\entity\Bookmark.class
 com\ethiojobs\dto\ErrorResponse$ErrorResponseBuilder.class
 com\ethiojobs\security\JwtAuthenticationFilter.class
@@ -51,6 +55,7 @@ com\ethiojobs\dto\ApplicationDto$ApplicationDtoBuilder.class
 com\ethiojobs\entity\ApplicationStatus.class
 com\ethiojobs\entity\Resume$ResumeBuilder.class
 com\ethiojobs\security\CustomUserDetails.class
+com\ethiojobs\dto\JobSeekerProfileDto$JobSeekerProfileDtoBuilder.class
 com\ethiojobs\dto\LoginRequest.class
 com\ethiojobs\service\impl\BookmarkServiceImpl.class
 com\ethiojobs\dto\ForgotPasswordRequest$ForgotPasswordRequestBuilder.class
@@ -76,6 +81,7 @@ com\ethiojobs\dto\RefreshTokenRequest.class
 com\ethiojobs\entity\ExperienceLevel.class
 com\ethiojobs\dto\ResumeDto.class
 com\ethiojobs\service\AdminService.class
+com\ethiojobs\config\WebConfig.class
 com\ethiojobs\exception\BadRequestException.class
 com\ethiojobs\entity\Role.class
 com\ethiojobs\service\impl\AdminServiceImpl.class
@@ -98,6 +104,7 @@ com\ethiojobs\security\RateLimitingFilter.class
 com\ethiojobs\entity\Notification$NotificationBuilder.class
 com\ethiojobs\dto\NotificationDto$NotificationDtoBuilder.class
 com\ethiojobs\entity\Notification.class
+com\ethiojobs\repository\JobSeekerProfileRepository.class
 com\ethiojobs\dto\ResetPasswordRequest.class
 com\ethiojobs\repository\BookmarkRepository.class
 com\ethiojobs\dto\LoginRequest$LoginRequestBuilder.class
@@ -111,11 +118,13 @@ com\ethiojobs\dto\CompanyDto$CompanyDtoBuilder.class
 com\ethiojobs\service\impl\ResumeServiceImpl.class
 com\ethiojobs\controller\JobController.class
 com\ethiojobs\dto\ErrorResponse.class
+com\ethiojobs\service\JobSeekerProfileService.class
 com\ethiojobs\entity\Bookmark$BookmarkBuilder.class
 com\ethiojobs\dto\RegisterRequest.class
 com\ethiojobs\EthioJobsApplication.class
 com\ethiojobs\dto\ApiResponse$ApiResponseBuilder.class
 com\ethiojobs\dto\ProfileRequest.class
+com\ethiojobs\service\impl\JobSeekerProfileServiceImpl.class
 com\ethiojobs\service\impl\ApplicationServiceImpl.class
 com\ethiojobs\controller\AuthController.class
 com\ethiojobs\config\OpenApiConfig.class

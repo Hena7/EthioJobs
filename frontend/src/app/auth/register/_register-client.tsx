@@ -98,7 +98,7 @@ export default function RegisterClient() {
             <Label>I am a</Label>
             <div className="grid grid-cols-2 gap-3">
               <label
-                className={`flex cursor-pointer items-center justify-center gap-2 rounded-lg border p-3 text-sm font-medium transition-colors hover:bg-muted has-data-[checked]:border-primary has-data-[checked]:bg-primary/5`}
+                className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border p-3 text-sm font-medium transition-colors hover:bg-muted has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:text-primary"
               >
                 <input
                   type="radio"
@@ -110,7 +110,7 @@ export default function RegisterClient() {
                 Job Seeker
               </label>
               <label
-                className={`flex cursor-pointer items-center justify-center gap-2 rounded-lg border p-3 text-sm font-medium transition-colors hover:bg-muted has-data-[checked]:border-primary has-data-[checked]:bg-primary/5`}
+                className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border p-3 text-sm font-medium transition-colors hover:bg-muted has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:text-primary"
               >
                 <input
                   type="radio"

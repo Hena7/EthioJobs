@@ -12,6 +12,7 @@ import {
   User,
   Users,
   ShieldCheck,
+  Building2,
   X,
 } from 'lucide-react';
 import { useAuthStore } from '@/store/authStore';
@@ -21,12 +22,14 @@ const employerNav = [
   { label: 'Overview', href: '/dashboard/employer', icon: LayoutDashboard },
   { label: 'My Jobs', href: '/dashboard/employer/jobs', icon: Briefcase },
   { label: 'Post New Job', href: '/dashboard/employer/jobs/new', icon: PlusCircle },
+  { label: 'Company Profile', href: '/dashboard/employer/profile', icon: Building2 },
 ];
 
 const seekerNav = [
   { label: 'Overview', href: '/dashboard/seeker', icon: LayoutDashboard },
   { label: 'My Applications', href: '/dashboard/seeker/applications', icon: FileText },
-  { label: 'Saved Jobs', href: '/dashboard/seeker/saved', icon: Bookmark },
+  { label: 'Saved Jobs', href: '/dashboard/seeker/bookmarks', icon: Bookmark },
+  { label: 'My Resumes', href: '/dashboard/seeker/resumes', icon: FileText },
   { label: 'My Profile', href: '/dashboard/seeker/profile', icon: User },
 ];
 

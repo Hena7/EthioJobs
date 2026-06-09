@@ -60,6 +60,18 @@ public class CompanyServiceImpl implements CompanyService {
                 .toList();
     }
 
+    @Override
+    public CompanyDto getCompanyByOwnerEmail(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
+        Company company = companyRepository.findByUserId(user.getId())
+                .orElseGet(() -> {
+                    Company newCompany = Company.builder().user(user).build();
+                    return companyRepository.save(newCompany);
+                });
+        return toDto(company);
+    }
+
     private CompanyDto toDto(Company company) {
         return CompanyDto.builder()
                 .id(company.getId())
