@@ -1,3 +1,5 @@
+﻿'use client'
+
 "use client"
 
 import { Select } from "@base-ui/react/select"
@@ -134,3 +136,4 @@ export {
   SelectGroup,
   SelectLabel,
 }
+

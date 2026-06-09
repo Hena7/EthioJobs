@@ -1,3 +1,5 @@
+﻿'use client'
+
 "use client"
 
 import { Input as InputPrimitive } from "@base-ui/react/input"
@@ -18,3 +20,4 @@ function Input({ className, ...props }: InputPrimitive.Props) {
 }
 
 export { Input }
+

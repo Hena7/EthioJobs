@@ -1,3 +1,5 @@
+﻿'use client'
+
 "use client"
 
 import { Drawer } from "@base-ui/react/drawer"
@@ -115,3 +117,4 @@ export {
   SheetTitle,
   SheetDescription,
 }
+

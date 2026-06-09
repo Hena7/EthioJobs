@@ -1,3 +1,5 @@
+﻿'use client'
+
 "use client"
 
 import { Avatar } from "@base-ui/react/avatar"
@@ -50,3 +52,4 @@ function AvatarFallback({
 }
 
 export { AvatarRoot as Avatar, AvatarImage, AvatarFallback }
+

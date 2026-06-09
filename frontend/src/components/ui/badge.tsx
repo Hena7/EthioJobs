@@ -1,3 +1,5 @@
+﻿'use client'
+
 "use client"
 
 import { cva, type VariantProps } from "class-variance-authority"
@@ -38,3 +40,4 @@ function Badge({
 }
 
 export { Badge, badgeVariants }
+

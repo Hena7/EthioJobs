@@ -1,3 +1,5 @@
+﻿'use client'
+
 "use client"
 
 import { Tabs } from "@base-ui/react/tabs"
@@ -59,3 +61,4 @@ export {
   TabsTrigger,
   TabsContent,
 }
+

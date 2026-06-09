@@ -1,3 +1,5 @@
+﻿'use client'
+
 "use client"
 
 import { Menu } from "@base-ui/react/menu"
@@ -124,3 +126,4 @@ export {
   DropdownMenuGroup,
   DropdownMenuLabel,
 }
+

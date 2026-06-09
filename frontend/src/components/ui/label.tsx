@@ -1,3 +1,5 @@
+﻿'use client'
+
 "use client"
 
 import { Field } from "@base-ui/react/field"
@@ -18,3 +20,4 @@ function Label({ className, ...props }: Field.Label.Props) {
 }
 
 export { Label }
+

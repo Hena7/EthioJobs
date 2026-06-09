@@ -1,3 +1,5 @@
+﻿'use client'
+
 "use client"
 
 import { ScrollArea } from "@base-ui/react/scroll-area"
@@ -42,3 +44,4 @@ function ScrollAreaRoot({
 }
 
 export { ScrollAreaRoot as ScrollArea }
+

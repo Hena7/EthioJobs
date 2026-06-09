@@ -1,3 +1,5 @@
+﻿'use client'
+
 "use client"
 
 import { Tooltip } from "@base-ui/react/tooltip"
@@ -49,3 +51,4 @@ export {
   TooltipTrigger,
   TooltipContent,
 }
+

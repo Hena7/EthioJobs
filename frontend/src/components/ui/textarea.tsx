@@ -1,3 +1,5 @@
+﻿'use client'
+
 "use client"
 
 import { cn } from "@/lib/utils"
@@ -16,3 +18,4 @@ function Textarea({ className, ...props }: React.TextareaHTMLAttributes<HTMLText
 }
 
 export { Textarea }
+

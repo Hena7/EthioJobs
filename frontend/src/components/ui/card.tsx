@@ -1,3 +1,5 @@
+﻿'use client'
+
 "use client"
 
 import { cn } from "@/lib/utils"
@@ -66,3 +68,4 @@ function CardFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement
 }
 
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
+

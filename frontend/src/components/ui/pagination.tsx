@@ -1,3 +1,5 @@
+﻿'use client'
+
 "use client"
 
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
@@ -100,3 +102,4 @@ function Pagination({
 }
 
 export { Pagination }
+

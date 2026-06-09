@@ -1,3 +1,5 @@
+﻿'use client'
+
 "use client"
 
 import { Dialog } from "@base-ui/react/dialog"
@@ -112,3 +114,4 @@ export {
   DialogTitle,
   DialogDescription,
 }
+
