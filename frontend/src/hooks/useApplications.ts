@@ -18,6 +18,13 @@ async function fetchJobApplications(jobId: string): Promise<Application[]> {
   return data.data;
 }
 
+async function fetchApplication(id: string): Promise<Application> {
+  const { data } = await axiosInstance.get<{ data: Application }>(
+    `/api/applications/${id}`,
+  );
+  return data.data;
+}
+
 export function useMyApplications() {
   return useQuery({
     queryKey: ['my-applications'],
@@ -30,6 +37,14 @@ export function useJobApplications(jobId: string) {
     queryKey: ['job-applications', jobId],
     queryFn: () => fetchJobApplications(jobId),
     enabled: !!jobId,
+  });
+}
+
+export function useApplication(id: string) {
+  return useQuery({
+    queryKey: ['application', id],
+    queryFn: () => fetchApplication(id),
+    enabled: !!id,
   });
 }
 

@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 import {
   Download,
@@ -157,16 +158,14 @@ export function ApplicantRow({
           )}
         </div>
 
-        <a
-          href={`/applications/${application.id}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="View application details"
+        <Link
+          href={`/dashboard/employer/jobs/${application.job.id}/applicants/${application.id}`}
+          title="View full profile"
         >
           <Button variant="ghost" size="icon-xs">
             <ExternalLink className="size-3.5" />
           </Button>
-        </a>
+        </Link>
       </div>
     </div>
   );
