@@ -79,7 +79,12 @@ public class AuthServiceImpl implements AuthService {
                 .isVerified(false)
                 .isActive(true)
                 .build();
-        user = userRepository.save(user);
+        try {
+            user = userRepository.save(user);
+        } catch (org.springframework.dao.DataIntegrityViolationException e) {
+            log.error("Data integrity violation during registration: {}", e.getMessage());
+            throw new DuplicateResourceException("Registration failed. The email might be in use, or there is a role constraint violation.");
+        }
 
         EmailVerificationToken verificationToken = EmailVerificationToken.builder()
                 .token(EmailVerificationToken.generateToken())
@@ -224,14 +229,20 @@ public class AuthServiceImpl implements AuthService {
     }
 
     private void saveRefreshToken(User user, String token) {
-        refreshTokenRepository.deleteExpiredOrRevoked(LocalDateTime.now());
-        refreshTokenRepository.deleteByUserId(user.getId());
-        RefreshToken refreshToken = RefreshToken.builder()
-                .token(token)
-                .expiresAt(LocalDateTime.now().plusDays(7))
-                .user(user)
-                .build();
-        refreshTokenRepository.save(refreshToken);
+        try {
+            refreshTokenRepository.deleteExpiredOrRevoked(LocalDateTime.now());
+            refreshTokenRepository.deleteByUserId(user.getId());
+            refreshTokenRepository.flush();
+            RefreshToken refreshToken = RefreshToken.builder()
+                    .token(token)
+                    .expiresAt(LocalDateTime.now().plusDays(7))
+                    .user(user)
+                    .build();
+            refreshTokenRepository.save(refreshToken);
+        } catch (org.springframework.dao.DataIntegrityViolationException e) {
+            log.error("Failed to save refresh token for user {}: {}", user.getEmail(), e.getMessage());
+            throw new DuplicateResourceException("Concurrent login detected or stale token constraints. Please try again.");
+        }
     }
 
     private UserDto toUserDto(User user) {

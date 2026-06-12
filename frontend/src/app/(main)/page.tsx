@@ -41,6 +41,7 @@ const stats = [
   { icon: Briefcase, label: 'Jobs', value: '10,000+' },
   { icon: Building2, label: 'Companies', value: '5,000+' },
   { icon: Users, label: 'Job Seekers', value: '50,000+' },
+  { icon: Medal, label: 'Freelancers', value: '5,000+' },
 ];
 
 export default function HomePage() {
@@ -168,41 +169,120 @@ export default function HomePage() {
         </section>
 
         <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid gap-8 md:grid-cols-3">
             <Card className="relative overflow-hidden border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10">
               <CardContent className="p-8">
                 <Building2 className="mb-4 size-10 text-primary" />
                 <h3 className="mb-2 text-xl font-bold">Post a Job</h3>
-                <p className="mb-6 text-muted-foreground">
+                <p className="mb-6 text-muted-foreground text-sm">
                   Reach thousands of qualified candidates across Ethiopia. Find
                   the perfect match for your team.
                 </p>
                 <Link
                   href="/auth/register?role=employer"
-                  className={buttonVariants({ size: 'lg' })}
+                  className={buttonVariants({ size: 'default' })}
                 >
                   Post a Job
                   <ArrowRight className="ml-2 size-4" />
                 </Link>
               </CardContent>
             </Card>
+            
             <Card className="relative overflow-hidden border-blue-500/20 bg-gradient-to-br from-blue-500/5 to-blue-500/10">
               <CardContent className="p-8">
                 <Briefcase className="mb-4 size-10 text-blue-500" />
                 <h3 className="mb-2 text-xl font-bold">Find a Job</h3>
-                <p className="mb-6 text-muted-foreground">
+                <p className="mb-6 text-muted-foreground text-sm">
                   Discover opportunities that match your skills. Take the next
                   step in your career today.
                 </p>
                 <Link
                   href="/jobs"
-                  className={cn(buttonVariants({ size: 'lg' }), "bg-blue-500 hover:bg-blue-600")}
+                  className={cn(buttonVariants({ size: 'default' }), "bg-blue-500 hover:bg-blue-600")}
                 >
                   Find a Job
                   <ArrowRight className="ml-2 size-4" />
                 </Link>
               </CardContent>
             </Card>
+
+            <Card className="relative overflow-hidden border-purple-500/20 bg-gradient-to-br from-purple-500/5 to-purple-500/10">
+              <CardContent className="p-8">
+                <Medal className="mb-4 size-10 text-purple-500" />
+                <h3 className="mb-2 text-xl font-bold">Hire Freelancers</h3>
+                <p className="mb-6 text-muted-foreground text-sm">
+                  Need flexible talent? Browse our marketplace of verified Ethiopian freelancers.
+                </p>
+                <Link
+                  href="/talent"
+                  className={cn(buttonVariants({ size: 'default' }), "bg-purple-500 hover:bg-purple-600")}
+                >
+                  Find Talent
+                  <ArrowRight className="ml-2 size-4" />
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* How it works */}
+        <section className="bg-background py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h2 className="mb-12 text-center text-3xl font-bold tracking-tight">How EthioJobs Marketplace Works</h2>
+            <div className="grid gap-8 md:grid-cols-2">
+              <div className="space-y-6">
+                <h3 className="text-xl font-semibold text-primary">For Clients</h3>
+                <div className="space-y-4">
+                  <div className="flex gap-4">
+                    <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">1</div>
+                    <div>
+                      <h4 className="font-medium">Post a job or browse catalog</h4>
+                      <p className="text-sm text-muted-foreground">Tell us what you need done, or browse ready-to-buy services.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">2</div>
+                    <div>
+                      <h4 className="font-medium">Choose the best freelancer</h4>
+                      <p className="text-sm text-muted-foreground">Review proposals, conduct interviews, and hire your favorite.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">3</div>
+                    <div>
+                      <h4 className="font-medium">Pay securely</h4>
+                      <p className="text-sm text-muted-foreground">Fund milestones upfront, and release payment only when you approve the work.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-6">
+                <h3 className="text-xl font-semibold text-blue-600">For Freelancers</h3>
+                <div className="space-y-4">
+                  <div className="flex gap-4">
+                    <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-blue-600 font-bold">1</div>
+                    <div>
+                      <h4 className="font-medium">Create a strong profile</h4>
+                      <p className="text-sm text-muted-foreground">Showcase your skills, experience, and portfolio to stand out.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-blue-600 font-bold">2</div>
+                    <div>
+                      <h4 className="font-medium">Submit proposals & sell services</h4>
+                      <p className="text-sm text-muted-foreground">Bid on active jobs or create catalog listings for clients to buy.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-blue-600 font-bold">3</div>
+                    <div>
+                      <h4 className="font-medium">Get paid safely</h4>
+                      <p className="text-sm text-muted-foreground">Work with peace of mind knowing the client has funded the milestone.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

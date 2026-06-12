@@ -21,14 +21,20 @@ public class ProfileController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('JOB_SEEKER')")
+    @PreAuthorize("hasAnyRole('JOB_SEEKER', 'FREELANCER')")
     public ResponseEntity<ApiResponse<JobSeekerProfileDto>> getMyProfile(@AuthenticationPrincipal CustomUserDetails userDetails) {
         JobSeekerProfileDto profile = profileService.getProfileByEmail(userDetails.getUsername());
         return ResponseEntity.ok(ApiResponse.success("Profile retrieved", profile));
     }
 
+    @GetMapping("/{userId}")
+    public ResponseEntity<ApiResponse<JobSeekerProfileDto>> getPublicProfile(@PathVariable Long userId) {
+        JobSeekerProfileDto profile = profileService.getProfileByUserId(userId);
+        return ResponseEntity.ok(ApiResponse.success("Profile retrieved", profile));
+    }
+
     @PutMapping
-    @PreAuthorize("hasRole('JOB_SEEKER')")
+    @PreAuthorize("hasAnyRole('JOB_SEEKER', 'FREELANCER')")
     public ResponseEntity<ApiResponse<JobSeekerProfileDto>> updateMyProfile(@RequestBody JobSeekerProfileRequest request,
                                                                              @AuthenticationPrincipal CustomUserDetails userDetails) {
         JobSeekerProfileDto profile = profileService.updateProfile(request, userDetails.getUsername());

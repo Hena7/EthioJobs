@@ -22,7 +22,7 @@ public class BookmarkController {
     }
 
     @PostMapping("/{jobId}")
-    @PreAuthorize("hasRole('JOB_SEEKER')")
+    @PreAuthorize("hasAnyRole('JOB_SEEKER', 'FREELANCER')")
     public ResponseEntity<ApiResponse<Void>> toggleBookmark(@PathVariable Long jobId,
             @AuthenticationPrincipal CustomUserDetails userDetails) {
         bookmarkService.toggleBookmark(jobId, userDetails.getUsername());
@@ -30,7 +30,7 @@ public class BookmarkController {
     }
 
     @DeleteMapping("/{jobId}")
-    @PreAuthorize("hasRole('JOB_SEEKER')")
+    @PreAuthorize("hasAnyRole('JOB_SEEKER', 'FREELANCER')")
     public ResponseEntity<ApiResponse<Void>> removeBookmark(@PathVariable Long jobId,
             @AuthenticationPrincipal CustomUserDetails userDetails) {
         bookmarkService.removeBookmark(jobId, userDetails.getUsername());
@@ -38,7 +38,7 @@ public class BookmarkController {
     }
 
     @GetMapping("/mine")
-    @PreAuthorize("hasRole('JOB_SEEKER')")
+    @PreAuthorize("hasAnyRole('JOB_SEEKER', 'FREELANCER')")
     public ResponseEntity<ApiResponse<List<BookmarkDto>>> getMyBookmarks(
             @AuthenticationPrincipal CustomUserDetails userDetails) {
         List<BookmarkDto> bookmarks = bookmarkService.getMyBookmarks(userDetails.getUsername());

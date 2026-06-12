@@ -33,6 +33,27 @@ const quickLinks = [
   },
 ];
 
+const freelancerQuickLinks = [
+  {
+    label: 'Find Work',
+    href: '/jobs',
+    icon: Briefcase,
+    description: 'Browse freelance jobs',
+  },
+  {
+    label: 'My Proposals',
+    href: '/dashboard/seeker/proposals',
+    icon: FileText,
+    description: 'Track your proposals',
+  },
+  {
+    label: 'My Contracts',
+    href: '/dashboard/contracts',
+    icon: Bookmark,
+    description: 'Manage active contracts',
+  },
+];
+
 export default function SeekerDashboardPage() {
   const { user } = useAuthStore();
   const { data: applications, isLoading, error } = useMyApplications();
@@ -96,7 +117,7 @@ export default function SeekerDashboardPage() {
       <SeekerStatsGrid stats={stats} />
 
       <div className="grid gap-4 md:grid-cols-3">
-        {quickLinks.map((link) => {
+        {(user?.role === 'FREELANCER' ? freelancerQuickLinks : quickLinks).map((link) => {
           const Icon = link.icon;
           return (
             <Link key={link.href} href={link.href}>

@@ -23,7 +23,7 @@ public class ResumeController {
     }
 
     @PostMapping("/upload")
-    @PreAuthorize("hasRole('JOB_SEEKER')")
+    @PreAuthorize("hasAnyRole('JOB_SEEKER', 'FREELANCER')")
     public ResponseEntity<ApiResponse<ResumeDto>> uploadResume(@RequestParam("file") MultipartFile file,
                                                                 @AuthenticationPrincipal CustomUserDetails userDetails) {
         ResumeDto resume = resumeService.uploadResume(file, userDetails.getUsername());
@@ -31,14 +31,14 @@ public class ResumeController {
     }
 
     @GetMapping("/mine")
-    @PreAuthorize("hasRole('JOB_SEEKER')")
+    @PreAuthorize("hasAnyRole('JOB_SEEKER', 'FREELANCER')")
     public ResponseEntity<ApiResponse<List<ResumeDto>>> getMyResumes(@AuthenticationPrincipal CustomUserDetails userDetails) {
         List<ResumeDto> resumes = resumeService.getMyResumes(userDetails.getUsername());
         return ResponseEntity.ok(ApiResponse.success("Resumes retrieved", resumes));
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('JOB_SEEKER')")
+    @PreAuthorize("hasAnyRole('JOB_SEEKER', 'FREELANCER')")
     public ResponseEntity<ApiResponse<Void>> deleteResume(@PathVariable Long id,
                                                            @AuthenticationPrincipal CustomUserDetails userDetails) {
         resumeService.deleteResume(id, userDetails.getUsername());

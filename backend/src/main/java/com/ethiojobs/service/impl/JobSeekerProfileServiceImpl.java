@@ -38,6 +38,13 @@ public class JobSeekerProfileServiceImpl implements JobSeekerProfileService {
     }
 
     @Override
+    public JobSeekerProfileDto getProfileByUserId(Long userId) {
+        JobSeekerProfile profile = profileRepository.findByUserId(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Profile", "userId", userId));
+        return mapToDto(profile);
+    }
+
+    @Override
     public JobSeekerProfileDto updateProfile(JobSeekerProfileRequest request, String email) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));

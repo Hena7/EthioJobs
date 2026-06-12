@@ -25,7 +25,7 @@ public class ApplicationController {
     }
 
     @PostMapping("/api/jobs/{jobId}/apply")
-    @PreAuthorize("hasRole('JOB_SEEKER')")
+    @PreAuthorize("hasAnyRole('JOB_SEEKER', 'FREELANCER')")
     public ResponseEntity<ApiResponse<ApplicationDto>> apply(@PathVariable Long jobId,
                                                               @Valid @RequestBody ApplicationRequest request,
                                                               @AuthenticationPrincipal CustomUserDetails userDetails) {
@@ -34,7 +34,7 @@ public class ApplicationController {
     }
 
     @GetMapping("/api/applications/mine")
-    @PreAuthorize("hasRole('JOB_SEEKER')")
+    @PreAuthorize("hasAnyRole('JOB_SEEKER', 'FREELANCER')")
     public ResponseEntity<ApiResponse<Page<ApplicationDto>>> getMyApplications(
             @AuthenticationPrincipal CustomUserDetails userDetails,
             @RequestParam(defaultValue = "0") int page,

@@ -65,10 +65,13 @@ public class CompanyServiceImpl implements CompanyService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
         Company company = companyRepository.findByUserId(user.getId())
-                .orElseGet(() -> {
-                    Company newCompany = Company.builder().user(user).build();
-                    return companyRepository.save(newCompany);
-                });
+                .orElse(null);
+        if (company == null) {
+            return CompanyDto.builder()
+                    .userId(user.getId())
+                    .name("")
+                    .build();
+        }
         return toDto(company);
     }
 

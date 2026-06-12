@@ -167,3 +167,71 @@ export function useOrderListing() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['marketplace', 'contracts'] }),
   });
 }
+
+export function useAddMilestone() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ contractId, ...payload }: { contractId: string; title: string; description?: string; amount: number; dueDate?: string }) =>
+      axiosInstance.post(`/api/marketplace/contracts/${contractId}/milestones`, payload),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['marketplace', 'contracts'] }),
+  });
+}
+
+export function useAddTimeEntry() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ contractId, ...payload }: { contractId: string; hoursWorked: number; description?: string; workedDate?: string }) =>
+      axiosInstance.post(`/api/marketplace/contracts/${contractId}/time-entries`, payload),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['marketplace', 'contracts'] }),
+  });
+}
+
+export function useCreateReview() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ contractId, ...payload }: { contractId: string; rating: number; comment?: string }) =>
+      axiosInstance.post(`/api/marketplace/contracts/${contractId}/reviews`, payload),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['marketplace'] }),
+  });
+}
+
+export function useUserReviews(userId?: string) {
+  return useQuery({
+    queryKey: ['marketplace', 'reviews', userId],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get<{ data: Review[] }>(`/api/marketplace/users/${userId}/reviews`);
+      return data.data ?? [];
+    },
+    enabled: !!userId,
+  });
+}
+
+export function useFreelancerPublicProfile(userId?: string) {
+  return useQuery({
+    queryKey: ['freelancer-profile', userId],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get<{ data: import('@/types').JobSeekerProfile & { userId?: string; name?: string; email?: string } }>(`/api/profile/${userId}`);
+      return data.data;
+    },
+    enabled: !!userId,
+  });
+}
+
+export function useAllFreelancerProfiles() {
+  return useQuery({
+    queryKey: ['freelancer-profiles'],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get<{ data: import('@/types').PaginatedResponse<import('@/types').JobSeekerProfile & { userId?: string; name?: string }> }>('/api/marketplace/catalog');
+      // Derive freelancers from catalog listings
+      return data.data.content ?? [];
+    },
+  });
+}
+
+type Review = {
+  id: string;
+  rating: number;
+  comment?: string;
+  reviewerName: string;
+  createdAt: string;
+};
