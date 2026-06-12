@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { PlusCircle, Edit, Eye, ArchiveRestore, Briefcase, AlertCircle } from 'lucide-react';
+import { PlusCircle, Edit, Eye, ArchiveRestore, Briefcase, AlertCircle, MessageSquare } from 'lucide-react';
 import { useMyJobs, useUpdateJob } from '@/hooks/useJobs';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -147,6 +147,11 @@ export default function MyJobsPage() {
                               <Link href={`/dashboard/employer/jobs/${job.id}/applicants`}>
                                 <Button variant="ghost" size="icon-xs">
                                   <Eye className="size-3.5" />
+                                </Button>
+                              </Link>
+                              <Link href={`/dashboard/employer/jobs/${job.id}/proposals`}>
+                                <Button variant="ghost" size="icon-xs">
+                                  <MessageSquare className="size-3.5" />
                                 </Button>
                               </Link>
                               <Button

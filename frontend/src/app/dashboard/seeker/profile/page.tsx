@@ -66,6 +66,11 @@ export default function ProfilePage() {
     defaultValues: {
       bio: '',
       skills: '',
+      headline: '',
+      hourlyRate: undefined,
+      categories: '',
+      portfolioLinks: '',
+      availability: '',
       location: '',
       experienceLevel: undefined,
       expectedSalary: undefined,
@@ -77,6 +82,11 @@ export default function ProfilePage() {
       reset({
         bio: profile.bio ?? '',
         skills: profile.skills ?? '',
+        headline: profile.headline ?? '',
+        hourlyRate: profile.hourlyRate ?? undefined,
+        categories: profile.categories ?? '',
+        portfolioLinks: profile.portfolioLinks ?? '',
+        availability: profile.availability ?? '',
         location: profile.location ?? '',
         experienceLevel: profile.experienceLevel ?? undefined,
         expectedSalary: profile.expectedSalary ?? undefined,
@@ -208,6 +218,18 @@ export default function ProfilePage() {
             </div>
 
             <div className="space-y-2">
+              <Label htmlFor="headline">Freelancer Headline</Label>
+              <Input
+                id="headline"
+                placeholder="e.g. Full-stack developer for SaaS teams"
+                {...register('headline')}
+              />
+              {errors.headline && (
+                <p className="text-xs text-destructive">{errors.headline.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
               <Label htmlFor="bio">Bio</Label>
               <Textarea
                 id="bio"
@@ -233,6 +255,47 @@ export default function ProfilePage() {
               {errors.skills && (
                 <p className="text-xs text-destructive">{errors.skills.message}</p>
               )}
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-3">
+              <div className="space-y-2">
+                <Label htmlFor="hourlyRate">Hourly Rate ($)</Label>
+                <Input
+                  id="hourlyRate"
+                  type="number"
+                  placeholder="e.g. 35"
+                  {...register('hourlyRate')}
+                />
+                {errors.hourlyRate && (
+                  <p className="text-xs text-destructive">{errors.hourlyRate.message}</p>
+                )}
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="categories">Categories</Label>
+                <Input
+                  id="categories"
+                  placeholder="Web, Mobile, Design"
+                  {...register('categories')}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="availability">Availability</Label>
+                <Input
+                  id="availability"
+                  placeholder="e.g. 20 hrs/week"
+                  {...register('availability')}
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="portfolioLinks">Portfolio Links</Label>
+              <Textarea
+                id="portfolioLinks"
+                placeholder="Add portfolio, GitHub, Behance, or case study links..."
+                className="min-h-[80px]"
+                {...register('portfolioLinks')}
+              />
             </div>
 
             <div className="grid gap-5 sm:grid-cols-3">

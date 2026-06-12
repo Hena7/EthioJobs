@@ -47,6 +47,16 @@ public class JobController {
         return ResponseEntity.ok(ApiResponse.success("Job retrieved", job));
     }
 
+    @GetMapping("/mine")
+    @PreAuthorize("hasRole('EMPLOYER')")
+    public ResponseEntity<ApiResponse<Page<JobDto>>> getMyJobs(
+            @AuthenticationPrincipal CustomUserDetails userDetails,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
+        Page<JobDto> jobs = jobService.getMyJobs(userDetails.getUsername(), page, size);
+        return ResponseEntity.ok(ApiResponse.success("Jobs retrieved", jobs));
+    }
+
     @PostMapping
     @PreAuthorize("hasRole('EMPLOYER')")
     public ResponseEntity<ApiResponse<JobDto>> createJob(@Valid @RequestBody JobRequest request,

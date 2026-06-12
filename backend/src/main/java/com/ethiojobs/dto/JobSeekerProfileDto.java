@@ -17,6 +17,13 @@ public class JobSeekerProfileDto {
     private String email;
     private String bio;
     private String skills;
+    private String headline;
+    private Double hourlyRate;
+    private String categories;
+    private String portfolioLinks;
+    private String availability;
+    private Double ratingAverage;
+    private Integer completedJobs;
     private String location;
     private ExperienceLevel experienceLevel;
     private Double expectedSalary;

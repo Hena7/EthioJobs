@@ -47,6 +47,11 @@ public class JobSeekerProfileServiceImpl implements JobSeekerProfileService {
 
         profile.setBio(request.getBio());
         profile.setSkills(request.getSkills());
+        profile.setHeadline(request.getHeadline());
+        profile.setHourlyRate(request.getHourlyRate());
+        profile.setCategories(request.getCategories());
+        profile.setPortfolioLinks(request.getPortfolioLinks());
+        profile.setAvailability(request.getAvailability());
         profile.setLocation(request.getLocation());
         profile.setExperienceLevel(request.getExperienceLevel());
         profile.setExpectedSalary(request.getExpectedSalary());
@@ -63,6 +68,13 @@ public class JobSeekerProfileServiceImpl implements JobSeekerProfileService {
                 .email(profile.getUser().getEmail())
                 .bio(profile.getBio())
                 .skills(profile.getSkills())
+                .headline(profile.getHeadline())
+                .hourlyRate(profile.getHourlyRate())
+                .categories(profile.getCategories())
+                .portfolioLinks(profile.getPortfolioLinks())
+                .availability(profile.getAvailability())
+                .ratingAverage(profile.getRatingAverage())
+                .completedJobs(profile.getCompletedJobs())
                 .location(profile.getLocation())
                 .experienceLevel(profile.getExperienceLevel())
                 .expectedSalary(profile.getExpectedSalary())

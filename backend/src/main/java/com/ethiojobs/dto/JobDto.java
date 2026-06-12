@@ -21,6 +21,12 @@ public class JobDto {
     private String requirements;
     private Double salaryMin;
     private Double salaryMax;
+    private Double fixedBudget;
+    private Double hourlyRateMin;
+    private Double hourlyRateMax;
+    private String requiredSkills;
+    private String projectLength;
+    private boolean hourlyProject;
     private JobType type;
     private String location;
     private String category;

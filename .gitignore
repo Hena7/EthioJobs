@@ -43,6 +43,7 @@ next-env.d.ts
 .build
 dist
 /target
+**/target/
 
 # frontend
 /frontend/node_modules/
@@ -64,3 +65,4 @@ dist
 .env.production.local
 /logs
 /target
+**/target/

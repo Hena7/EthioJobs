@@ -10,7 +10,7 @@ import { z } from 'zod';
 import { toast } from 'sonner';
 import { useJob, useJobs } from '@/hooks/useJobs';
 import { useMyBookmarks, useToggleBookmark } from '@/hooks/useBookmarks';
-import { useApply } from '@/hooks/useApplications';
+import { useSubmitProposal } from '@/hooks/useMarketplace';
 import { JobDetailHeader } from '@/components/jobs/job-detail-header';
 import { JobDetailContent } from '@/components/jobs/job-detail-content';
 import { JobCard } from '@/components/jobs/job-card';
@@ -23,6 +23,7 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { DetailSkeleton } from '@/components/shared/loading-skeleton';
 
@@ -30,6 +31,8 @@ const applySchema = z.object({
   coverLetter: z
     .string()
     .min(10, 'Cover letter must be at least 10 characters'),
+  bidAmount: z.coerce.number().positive('Bid amount must be positive').optional(),
+  estimatedDuration: z.string().optional(),
 });
 
 type ApplyFormData = z.infer<typeof applySchema>;
@@ -40,7 +43,7 @@ export default function JobDetailPage() {
   const { data: job, isLoading, isError } = useJob(params.id);
   const { data: bookmarks } = useMyBookmarks();
   const toggleBookmark = useToggleBookmark();
-  const apply = useApply();
+  const submitProposal = useSubmitProposal();
 
   const [applyOpen, setApplyOpen] = useState(false);
 
@@ -50,7 +53,7 @@ export default function JobDetailPage() {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<ApplyFormData>({
-    resolver: zodResolver(applySchema),
+    resolver: zodResolver(applySchema) as never,
   });
 
   const { data: similarJobsData } = useJobs(
@@ -69,14 +72,12 @@ export default function JobDetailPage() {
 
   const onSubmitApply = async (formData: ApplyFormData) => {
     try {
-      const fd = new FormData();
-      fd.append('coverLetter', formData.coverLetter);
-      await apply.mutateAsync({ jobId: params.id, formData: fd });
-      toast.success('Application submitted successfully!');
+      await submitProposal.mutateAsync({ jobId: params.id, ...formData });
+      toast.success('Proposal submitted successfully!');
       setApplyOpen(false);
       reset();
     } catch {
-      toast.error('Failed to submit application. Please try again.');
+      toast.error('Failed to submit proposal. Please try again.');
     }
   };
 
@@ -194,7 +195,7 @@ export default function JobDetailPage() {
               size="lg"
               onClick={() => setApplyOpen(true)}
             >
-              Apply Now
+              Submit Proposal
             </Button>
           </div>
         </aside>
@@ -214,9 +215,9 @@ export default function JobDetailPage() {
       <Dialog open={applyOpen} onOpenChange={setApplyOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Apply for {job.title}</DialogTitle>
+            <DialogTitle>Submit proposal for {job.title}</DialogTitle>
             <DialogDescription>
-              Submit your application to {job.companyName}
+              Send your bid and timeline to {job.companyName}
             </DialogDescription>
           </DialogHeader>
 
@@ -236,6 +237,31 @@ export default function JobDetailPage() {
               )}
             </div>
 
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="space-y-2">
+                <Label htmlFor="bidAmount">Bid Amount</Label>
+                <Input
+                  id="bidAmount"
+                  type="number"
+                  placeholder="e.g. 750"
+                  {...register('bidAmount')}
+                />
+                {errors.bidAmount && (
+                  <p className="text-sm text-destructive">
+                    {errors.bidAmount.message}
+                  </p>
+                )}
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="estimatedDuration">Estimated Duration</Label>
+                <Input
+                  id="estimatedDuration"
+                  placeholder="e.g. 2 weeks"
+                  {...register('estimatedDuration')}
+                />
+              </div>
+            </div>
+
             <div className="flex justify-end gap-3">
               <Button
                 type="button"
@@ -248,7 +274,7 @@ export default function JobDetailPage() {
                 Cancel
               </Button>
               <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Submitting...' : 'Submit Application'}
+                {isSubmitting ? 'Submitting...' : 'Submit Proposal'}
               </Button>
             </div>
           </form>

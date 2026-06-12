@@ -25,6 +25,21 @@ public class JobSeekerProfile {
 
     private String skills;
 
+    private String headline;
+
+    private Double hourlyRate;
+
+    private String categories;
+
+    @Column(columnDefinition = "TEXT")
+    private String portfolioLinks;
+
+    private String availability;
+
+    private Double ratingAverage;
+
+    private Integer completedJobs;
+
     private String location;
 
     @Enumerated(EnumType.STRING)

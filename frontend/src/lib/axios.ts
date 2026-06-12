@@ -61,12 +61,12 @@ axiosInstance.interceptors.response.use(
 
       originalRequest._retry = true;
       isRefreshing = true;
+      const refreshToken = getStore()?.getState().refreshToken;
 
       try {
         const { data } = await axios.post(
           `${API_BASE_URL}/api/auth/refresh-token`,
-          {},
-          { withCredentials: true },
+          { token: refreshToken },
         );
         const newToken = data.data?.accessToken;
         if (newToken) {

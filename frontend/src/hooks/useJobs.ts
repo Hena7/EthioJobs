@@ -27,8 +27,8 @@ async function fetchJob(id: string): Promise<Job> {
 }
 
 async function fetchMyJobs(): Promise<Job[]> {
-  const { data } = await axiosInstance.get<{ data: Job[] }>('/api/jobs/mine');
-  return data.data;
+  const { data } = await axiosInstance.get<{ data: PaginatedResponse<Job> }>('/api/jobs/mine');
+  return data.data.content ?? [];
 }
 
 export function useJobs(filters: JobFilters = {}) {

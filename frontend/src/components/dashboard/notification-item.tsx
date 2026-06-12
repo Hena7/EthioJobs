@@ -29,10 +29,6 @@ const iconMap: Record<string, LucideIcon> = {
   default: Bell,
 };
 
-function getIcon(type: string): LucideIcon {
-  return iconMap[type] || iconMap.default;
-}
-
 function getIconColor(type: string): string {
   switch (type) {
     case 'JOB_ALERT':
@@ -55,7 +51,7 @@ export function NotificationItem({
   onMarkRead,
   className,
 }: NotificationItemProps) {
-  const Icon = getIcon(notification.type);
+  const Icon = iconMap[notification.type] ?? iconMap.default;
 
   return (
     <button

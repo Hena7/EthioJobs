@@ -28,7 +28,7 @@ export default function RegisterClient() {
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
-    defaultValues: { role: 'JOB_SEEKER' },
+    defaultValues: { role: 'FREELANCER' },
   });
 
   const onSubmit = async (data: RegisterFormData) => {
@@ -102,12 +102,12 @@ export default function RegisterClient() {
               >
                 <input
                   type="radio"
-                  value="JOB_SEEKER"
+                  value="FREELANCER"
                   className="sr-only"
                   {...register('role')}
                 />
                 <Search className="size-4" />
-                Job Seeker
+                Freelancer
               </label>
               <label
                 className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border p-3 text-sm font-medium transition-colors hover:bg-muted has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:text-primary"

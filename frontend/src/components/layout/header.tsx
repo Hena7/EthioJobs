@@ -11,6 +11,7 @@ import {
   Home,
   Search,
   Building2,
+  Store,
   User,
   LayoutDashboard,
   LogOut,
@@ -24,6 +25,8 @@ import { useState } from 'react';
 const navLinks = [
   { label: 'Home', href: '/', icon: Home },
   { label: 'Find Jobs', href: '/jobs', icon: Search },
+  { label: 'Find Talent', href: '/talent', icon: User },
+  { label: 'Catalog', href: '/catalog', icon: Store },
   { label: 'Companies', href: '/companies', icon: Building2 },
 ];
 

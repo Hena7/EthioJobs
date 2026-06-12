@@ -32,6 +32,20 @@ public class Job {
 
     private Double salaryMax;
 
+    private Double fixedBudget;
+
+    private Double hourlyRateMin;
+
+    private Double hourlyRateMax;
+
+    private String requiredSkills;
+
+    private String projectLength;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean hourlyProject = false;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private JobType type;

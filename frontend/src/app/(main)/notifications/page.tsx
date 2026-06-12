@@ -102,7 +102,7 @@ export default function NotificationsPage() {
               </div>
               <h3 className="text-lg font-medium">No notifications</h3>
               <p className="text-sm text-muted-foreground mt-1 max-w-sm">
-                You're all caught up! We'll notify you when there's an update on your account or applications.
+                You&apos;re all caught up! We&apos;ll notify you when there&apos;s an update on your account or applications.
               </p>
             </CardContent>
           </Card>

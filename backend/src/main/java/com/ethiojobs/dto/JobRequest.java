@@ -25,6 +25,12 @@ public class JobRequest {
     private String requirements;
     private Double salaryMin;
     private Double salaryMax;
+    private Double fixedBudget;
+    private Double hourlyRateMin;
+    private Double hourlyRateMax;
+    private String requiredSkills;
+    private String projectLength;
+    private Boolean hourlyProject;
 
     @NotNull
     private JobType type;

@@ -13,6 +13,9 @@ import {
   Users,
   ShieldCheck,
   Building2,
+  MessageSquare,
+  Handshake,
+  Store,
   X,
 } from 'lucide-react';
 import { useAuthStore } from '@/store/authStore';
@@ -22,11 +25,18 @@ const employerNav = [
   { label: 'Overview', href: '/dashboard/employer', icon: LayoutDashboard },
   { label: 'My Jobs', href: '/dashboard/employer/jobs', icon: Briefcase },
   { label: 'Post New Job', href: '/dashboard/employer/jobs/new', icon: PlusCircle },
+  { label: 'Contracts', href: '/dashboard/contracts', icon: Handshake },
+  { label: 'Messages', href: '/dashboard/messages', icon: MessageSquare },
   { label: 'Company Profile', href: '/dashboard/employer/profile', icon: Building2 },
 ];
 
 const seekerNav = [
   { label: 'Overview', href: '/dashboard/seeker', icon: LayoutDashboard },
+  { label: 'Find Work', href: '/jobs', icon: Briefcase },
+  { label: 'My Proposals', href: '/dashboard/seeker/proposals', icon: FileText },
+  { label: 'Contracts', href: '/dashboard/contracts', icon: Handshake },
+  { label: 'Messages', href: '/dashboard/messages', icon: MessageSquare },
+  { label: 'Catalog Listings', href: '/dashboard/seeker/catalog', icon: Store },
   { label: 'My Applications', href: '/dashboard/seeker/applications', icon: FileText },
   { label: 'Saved Jobs', href: '/dashboard/seeker/bookmarks', icon: Bookmark },
   { label: 'My Resumes', href: '/dashboard/seeker/resumes', icon: FileText },
@@ -37,6 +47,7 @@ const adminNav = [
   { label: 'Overview', href: '/dashboard/admin', icon: LayoutDashboard },
   { label: 'Users', href: '/dashboard/admin/users', icon: Users },
   { label: 'Jobs Moderation', href: '/dashboard/admin/jobs', icon: ShieldCheck },
+  { label: 'Marketplace', href: '/dashboard/admin/marketplace', icon: Handshake },
 ];
 
 export default function Sidebar() {
@@ -50,7 +61,7 @@ export default function Sidebar() {
     navItems = adminNav;
   } else if (user?.role === 'EMPLOYER') {
     navItems = employerNav;
-  } else if (user?.role === 'JOB_SEEKER') {
+  } else if (user?.role === 'JOB_SEEKER' || user?.role === 'FREELANCER') {
     navItems = seekerNav;
   }
 

@@ -20,7 +20,7 @@ export function useAuth() {
         '/api/auth/login',
         credentials,
       );
-      setAuth(data.data.user, data.data.accessToken);
+      setAuth(data.data.user, data.data.accessToken, data.data.refreshToken);
       router.push('/dashboard');
       return data.data;
     } catch (err: unknown) {
@@ -42,7 +42,7 @@ export function useAuth() {
         '/api/auth/register',
         registerData,
       );
-      setAuth(data.data.user, data.data.accessToken);
+      setAuth(data.data.user, data.data.accessToken, data.data.refreshToken);
       router.push('/dashboard');
       return data.data;
     } catch (err: unknown) {
@@ -74,7 +74,7 @@ export function useAuth() {
         {},
         { withCredentials: true },
       );
-      setAuth(data.data.user, data.data.accessToken);
+      setAuth(data.data.user, data.data.accessToken, data.data.refreshToken);
       return data.data;
     } catch {
       clearAuth();

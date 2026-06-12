@@ -104,6 +104,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
+    @Transactional
     public AuthResponse login(LoginRequest request) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
@@ -223,6 +224,8 @@ public class AuthServiceImpl implements AuthService {
     }
 
     private void saveRefreshToken(User user, String token) {
+        refreshTokenRepository.deleteExpiredOrRevoked(LocalDateTime.now());
+        refreshTokenRepository.deleteByUserId(user.getId());
         RefreshToken refreshToken = RefreshToken.builder()
                 .token(token)
                 .expiresAt(LocalDateTime.now().plusDays(7))

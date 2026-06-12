@@ -15,7 +15,7 @@ export const registerSchema = z.object({
     .regex(/[A-Z]/, 'Password must contain an uppercase letter')
     .regex(/[a-z]/, 'Password must contain a lowercase letter')
     .regex(/[0-9]/, 'Password must contain a number'),
-  role: z.enum(['EMPLOYER', 'JOB_SEEKER']),
+  role: z.enum(['EMPLOYER', 'JOB_SEEKER', 'FREELANCER']),
 });
 
 const jobSchemaBase = z.object({
@@ -27,6 +27,12 @@ const jobSchemaBase = z.object({
   requirements: z.string().optional(),
   salaryMin: z.number().positive('Salary must be positive').optional(),
   salaryMax: z.number().positive('Salary must be positive').optional(),
+  fixedBudget: z.coerce.number().positive('Budget must be positive').optional(),
+  hourlyRateMin: z.coerce.number().positive('Rate must be positive').optional(),
+  hourlyRateMax: z.coerce.number().positive('Rate must be positive').optional(),
+  requiredSkills: z.string().optional(),
+  projectLength: z.string().optional(),
+  hourlyProject: z.boolean().optional(),
   type: z.nativeEnum(JobType),
   location: z.string().min(2, 'Location must be at least 2 characters'),
   category: z.string().min(2, 'Category must be at least 2 characters'),
@@ -45,6 +51,11 @@ export const applicationSchema = z.object({
 export const profileSchema = z.object({
   bio: z.string().max(500, 'Bio must be at most 500 characters').optional(),
   skills: z.string().optional(),
+  headline: z.string().max(120, 'Headline must be at most 120 characters').optional(),
+  hourlyRate: z.coerce.number().positive('Hourly rate must be positive').optional(),
+  categories: z.string().optional(),
+  portfolioLinks: z.string().optional(),
+  availability: z.string().optional(),
   location: z.string().optional(),
   experienceLevel: z.nativeEnum(ExperienceLevel).optional(),
   expectedSalary: z.coerce.number().positive('Salary must be positive').optional(),

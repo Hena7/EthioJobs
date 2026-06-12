@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { useMyResumes, useUploadResume, useDeleteResume, type Resume } from '@/hooks/useResumes';
+import { useMyResumes, useUploadResume, useDeleteResume } from '@/hooks/useResumes';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { FileUpload } from '@/components/shared/file-upload';
 import { FileText, Download, Trash2, AlertTriangle, FileUp, Calendar } from 'lucide-react';
@@ -113,16 +113,16 @@ export default function ResumesPage() {
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Button
-                          variant="outline"
-                          size="icon"
-                          asChild
+                        <a
+                          href={resume.fileUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          download
+                          className={buttonVariants({ variant: 'outline', size: 'icon' })}
                         >
-                          <a href={resume.fileUrl} target="_blank" rel="noopener noreferrer" download>
-                            <Download className="size-4" />
-                            <span className="sr-only">Download</span>
-                          </a>
-                        </Button>
+                          <Download className="size-4" />
+                          <span className="sr-only">Download</span>
+                        </a>
                         <Button
                           variant="destructive"
                           size="icon"

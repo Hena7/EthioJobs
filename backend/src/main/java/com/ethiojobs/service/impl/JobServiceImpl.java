@@ -123,6 +123,12 @@ public class JobServiceImpl implements JobService {
                 .requirements(request.getRequirements())
                 .salaryMin(request.getSalaryMin())
                 .salaryMax(request.getSalaryMax())
+                .fixedBudget(request.getFixedBudget())
+                .hourlyRateMin(request.getHourlyRateMin())
+                .hourlyRateMax(request.getHourlyRateMax())
+                .requiredSkills(request.getRequiredSkills())
+                .projectLength(request.getProjectLength())
+                .hourlyProject(Boolean.TRUE.equals(request.getHourlyProject()))
                 .type(request.getType())
                 .location(request.getLocation())
                 .category(request.getCategory())
@@ -152,6 +158,12 @@ public class JobServiceImpl implements JobService {
         job.setRequirements(request.getRequirements());
         job.setSalaryMin(request.getSalaryMin());
         job.setSalaryMax(request.getSalaryMax());
+        job.setFixedBudget(request.getFixedBudget());
+        job.setHourlyRateMin(request.getHourlyRateMin());
+        job.setHourlyRateMax(request.getHourlyRateMax());
+        job.setRequiredSkills(request.getRequiredSkills());
+        job.setProjectLength(request.getProjectLength());
+        job.setHourlyProject(Boolean.TRUE.equals(request.getHourlyProject()));
         job.setType(request.getType());
         job.setLocation(request.getLocation());
         job.setCategory(request.getCategory());
@@ -217,6 +229,12 @@ public class JobServiceImpl implements JobService {
                 .requirements(job.getRequirements())
                 .salaryMin(job.getSalaryMin())
                 .salaryMax(job.getSalaryMax())
+                .fixedBudget(job.getFixedBudget())
+                .hourlyRateMin(job.getHourlyRateMin())
+                .hourlyRateMax(job.getHourlyRateMax())
+                .requiredSkills(job.getRequiredSkills())
+                .projectLength(job.getProjectLength())
+                .hourlyProject(job.isHourlyProject())
                 .type(job.getType())
                 .location(job.getLocation())
                 .category(job.getCategory())

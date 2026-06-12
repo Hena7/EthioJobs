@@ -5,8 +5,9 @@ import type { User } from '@/types';
 export interface AuthState {
   user: User | null;
   accessToken: string | null;
+  refreshToken: string | null;
   isAuthenticated: boolean;
-  setAuth: (user: User, token: string) => void;
+  setAuth: (user: User, accessToken: string, refreshToken?: string) => void;
   setUser: (user: User) => void;
   logout: () => void;
   updateToken: (token: string) => void;
@@ -28,15 +29,16 @@ export const useAuthStore = create<AuthState>()(
     (set) => ({
       user: null,
       accessToken: null,
+      refreshToken: null,
       isAuthenticated: false,
-      setAuth: (user, accessToken) => {
+      setAuth: (user, accessToken, refreshToken) => {
         setCookie('accessToken', accessToken);
-        set({ user, accessToken, isAuthenticated: true });
+        set({ user, accessToken, refreshToken: refreshToken ?? null, isAuthenticated: true });
       },
       setUser: (user) => set({ user }),
       logout: () => {
         removeCookie('accessToken');
-        set({ user: null, accessToken: null, isAuthenticated: false });
+        set({ user: null, accessToken: null, refreshToken: null, isAuthenticated: false });
       },
       updateToken: (accessToken) => {
         setCookie('accessToken', accessToken);
@@ -47,6 +49,7 @@ export const useAuthStore = create<AuthState>()(
       name: 'ethiojobs-auth',
       partialize: (state) => ({
         accessToken: state.accessToken,
+        refreshToken: state.refreshToken,
         user: state.user,
         isAuthenticated: state.isAuthenticated,
       }),

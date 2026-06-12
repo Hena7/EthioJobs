@@ -45,7 +45,7 @@ export default function PostNewJobPage() {
     control,
     formState: { errors },
   } = useForm<JobFormData>({
-    resolver: zodResolver(jobSchema),
+    resolver: zodResolver(jobSchema) as never,
     defaultValues: {
       title: '',
       description: '',
