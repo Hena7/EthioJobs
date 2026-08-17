@@ -36,7 +36,7 @@ export default function AuthLayout({
         playsInline
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
-        <source src="https://cdn.pixabay.com/video/2016/09/21/5398-183786499_large.mp4" type="video/mp4" />
+        <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-background/80 backdrop-blur-md z-0" />
       <div className="absolute inset-0 bg-gradient-mesh opacity-30 pointer-events-none z-0" />
