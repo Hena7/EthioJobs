@@ -71,7 +71,7 @@ export default function HomePage() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover z-[-1]"
           >
-            <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
+            <source src="/1.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-background/80 backdrop-blur-[2px] z-[-1]" />
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent z-[-1]" />
@@ -232,7 +232,7 @@ export default function HomePage() {
                 gradientTo: "to-primary/10",
                 bgColor: "",
                 hoverBgColor: "",
-                video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+                video: "/2.mp4"
               },
               {
                 icon: Briefcase,
