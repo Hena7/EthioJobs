@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import {
   Search,
   MapPin,
@@ -62,35 +63,51 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-primary/10 py-20 sm:py-28">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-blue-500/5 via-transparent to-transparent" />
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+      <section className="relative overflow-hidden min-h-[80vh] flex items-center justify-center py-20 sm:py-28">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-[-1]"
+          >
+            <source src="https://cdn.pixabay.com/video/2021/08/18/85429-590038848_large.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-background/80 backdrop-blur-[2px] z-[-1]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent z-[-1]" />
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 w-full"
+          >
             <div className="mx-auto max-w-3xl text-center">
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl text-foreground drop-shadow-sm">
                 Find Your Dream Job in{' '}
                 <span className="text-primary">Ethiopia</span>
               </h1>
-              <p className="mt-4 text-lg text-muted-foreground sm:text-xl">
+              <p className="mt-6 text-lg text-foreground/80 sm:text-xl max-w-2xl mx-auto font-medium">
                 Connect with top employers across Ethiopia. Browse thousands of
                 opportunities from leading companies.
               </p>
               <form
                 onSubmit={handleSearch}
-                className="mt-8 flex flex-col gap-3 sm:flex-row"
+                className="mt-10 flex flex-col gap-3 sm:flex-row bg-background/95 p-3 rounded-2xl shadow-xl backdrop-blur-md border border-primary/10"
               >
                 <div className="relative flex-1">
-                  <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                  <Search className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
                   <Input
                     placeholder="Job title, keyword, or company"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="h-12 pl-10 text-base"
+                    className="h-14 pl-11 text-base bg-transparent border-0 focus-visible:ring-0 shadow-none"
                   />
                 </div>
-                <div className="sm:w-48">
+                <div className="hidden sm:block w-px bg-border my-2" />
+                <div className="sm:w-56">
                   <Select value={category} onValueChange={(v) => setCategory(typeof v === 'string' ? v : '')}>
-                    <SelectTrigger className="h-12 text-base">
+                    <SelectTrigger className="h-14 text-base border-0 bg-transparent focus:ring-0 shadow-none">
                       <SelectValue placeholder="All Categories" />
                     </SelectTrigger>
                     <SelectContent>
@@ -102,208 +119,301 @@ export default function HomePage() {
                     </SelectContent>
                   </Select>
                 </div>
-                <Button type="submit" size="lg" className="h-12 px-8">
-                  <Search className="mr-2 size-4" />
+                <Button type="submit" size="lg" className="h-14 px-8 rounded-xl text-lg group">
+                  <Search className="mr-2 size-5 transition-transform group-hover:scale-110" />
                   Search
                 </Button>
               </form>
             </div>
-          </div>
+          </motion.div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="mb-8 flex items-center justify-between">
-            <h2 className="text-2xl font-bold tracking-tight">Featured Jobs</h2>
+        <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-10 flex items-end justify-between"
+          >
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight">Featured Jobs</h2>
+              <p className="text-muted-foreground mt-2">Explore top opportunities curated just for you.</p>
+            </div>
             <Link
               href="/jobs"
-              className="flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+              className="group flex items-center gap-2 text-sm font-medium text-primary hover:underline"
             >
               View All Jobs
-              <ArrowRight className="size-4" />
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
             </Link>
-          </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ staggerChildren: 0.1 }}
+            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          >
           {isLoading ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <JobCardSkeleton key={i} />
-              ))}
-            </div>
+            Array.from({ length: 6 }).map((_, i) => (
+              <JobCardSkeleton key={i} />
+            ))
           ) : featuredJobs.length > 0 ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {featuredJobs.map((job) => (
-                <JobCard key={job.id} job={job} />
-              ))}
-            </div>
+            featuredJobs.map((job) => (
+              <motion.div key={job.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                <JobCard job={job} />
+              </motion.div>
+            ))
           ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {(jobsData?.content ?? []).slice(0, 6).map((job) => (
-                <JobCard key={job.id} job={job} />
-              ))}
-            </div>
+            (jobsData?.content ?? []).slice(0, 6).map((job) => (
+              <motion.div key={job.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                <JobCard job={job} />
+              </motion.div>
+            ))
           )}
+          </motion.div>
         </section>
 
-        <section className="bg-muted/30 py-16">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="mb-8 text-center text-2xl font-bold tracking-tight">
-              Browse by Category
-            </h2>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+        <section className="bg-muted/30 py-24 relative overflow-hidden">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl font-bold tracking-tight">
+                Browse by Category
+              </h2>
+              <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">Find the perfect role that matches your skills across our diverse categories.</p>
+            </motion.div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
               {CATEGORIES.slice(0, 6).map((cat, i) => {
                 const Icon = categoryIcons[i];
                 return (
-                  <Link key={cat} href={`/jobs?category=${encodeURIComponent(cat)}`}>
-                    <Card className="group h-full transition-all hover:-translate-y-0.5 hover:shadow-md">
-                      <CardContent className="flex flex-col items-center gap-3 py-8 text-center">
-                        <div className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                          <Icon className="size-6" />
-                        </div>
-                        <span className="text-sm font-medium">{cat}</span>
-                      </CardContent>
-                    </Card>
-                  </Link>
+                  <motion.div
+                    key={cat}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    whileHover={{ y: -5 }}
+                  >
+                    <Link href={`/jobs?category=${encodeURIComponent(cat)}`}>
+                      <Card className="group h-full border-transparent bg-background shadow-sm transition-all hover:shadow-lg hover:border-primary/20">
+                        <CardContent className="flex flex-col items-center gap-4 py-8 text-center">
+                          <div className="flex size-14 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110 group-hover:rotate-3">
+                            <Icon className="size-7" />
+                          </div>
+                          <span className="text-sm font-medium">{cat}</span>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </motion.div>
                 );
               })}
             </div>
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="grid gap-8 md:grid-cols-3">
-            <Card className="relative overflow-hidden border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10">
-              <CardContent className="p-8">
-                <Building2 className="mb-4 size-10 text-primary" />
-                <h3 className="mb-2 text-xl font-bold">Post a Job</h3>
-                <p className="mb-6 text-muted-foreground text-sm">
-                  Reach thousands of qualified candidates across Ethiopia. Find
-                  the perfect match for your team.
-                </p>
-                <Link
-                  href="/auth/register?role=employer"
-                  className={buttonVariants({ size: 'default' })}
-                >
-                  Post a Job
-                  <ArrowRight className="ml-2 size-4" />
-                </Link>
-              </CardContent>
-            </Card>
-            
-            <Card className="relative overflow-hidden border-blue-500/20 bg-gradient-to-br from-blue-500/5 to-blue-500/10">
-              <CardContent className="p-8">
-                <Briefcase className="mb-4 size-10 text-blue-500" />
-                <h3 className="mb-2 text-xl font-bold">Find a Job</h3>
-                <p className="mb-6 text-muted-foreground text-sm">
-                  Discover opportunities that match your skills. Take the next
-                  step in your career today.
-                </p>
-                <Link
-                  href="/jobs"
-                  className={cn(buttonVariants({ size: 'default' }), "bg-blue-500 hover:bg-blue-600")}
-                >
-                  Find a Job
-                  <ArrowRight className="ml-2 size-4" />
-                </Link>
-              </CardContent>
-            </Card>
+            {[
+              {
+                icon: Building2,
+                title: "Post a Job",
+                desc: "Reach thousands of qualified candidates across Ethiopia. Find the perfect match for your team.",
+                href: "/auth/register?role=employer",
+                linkText: "Post a Job",
+                color: "primary",
+                textColor: "text-primary",
+                borderColor: "border-primary/20",
+                gradientTo: "to-primary/10",
+                bgColor: "",
+                hoverBgColor: "",
+                video: "https://cdn.pixabay.com/video/2021/02/10/64700-510850259_large.mp4"
+              },
+              {
+                icon: Briefcase,
+                title: "Find a Job",
+                desc: "Discover opportunities that match your skills. Take the next step in your career today.",
+                href: "/jobs",
+                linkText: "Find a Job",
+                color: "blue",
+                textColor: "text-blue-500",
+                borderColor: "border-blue-500/20",
+                gradientTo: "to-blue-500/10",
+                bgColor: "bg-blue-500",
+                hoverBgColor: "hover:bg-blue-600",
+                video: "https://cdn.pixabay.com/video/2020/05/11/38914-421714881_large.mp4"
+              },
+              {
+                icon: Medal,
+                title: "Hire Freelancers",
+                desc: "Need flexible talent? Browse our marketplace of verified Ethiopian freelancers.",
+                href: "/talent",
+                linkText: "Find Talent",
+                color: "purple",
+                textColor: "text-purple-500",
+                borderColor: "border-purple-500/20",
+                gradientTo: "to-purple-500/10",
+                bgColor: "bg-purple-500",
+                hoverBgColor: "hover:bg-purple-600",
+                video: "https://cdn.pixabay.com/video/2019/11/13/29032-372990666_large.mp4"
+              }
+            ].map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15 }}
+                whileHover={{ scale: 1.02 }}
+                className="relative"
+              >
+                <Card className={cn(`relative overflow-hidden h-full group cursor-pointer`, item.borderColor)}>
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover opacity-10 transition-opacity group-hover:opacity-20 z-0"
+                  >
+                    <source src={item.video} type="video/mp4" />
+                  </video>
+                  <div className={cn(`absolute inset-0 bg-gradient-to-br from-background via-background/90 z-0`, item.gradientTo)} />
 
-            <Card className="relative overflow-hidden border-purple-500/20 bg-gradient-to-br from-purple-500/5 to-purple-500/10">
-              <CardContent className="p-8">
-                <Medal className="mb-4 size-10 text-purple-500" />
-                <h3 className="mb-2 text-xl font-bold">Hire Freelancers</h3>
-                <p className="mb-6 text-muted-foreground text-sm">
-                  Need flexible talent? Browse our marketplace of verified Ethiopian freelancers.
-                </p>
-                <Link
-                  href="/talent"
-                  className={cn(buttonVariants({ size: 'default' }), "bg-purple-500 hover:bg-purple-600")}
-                >
-                  Find Talent
-                  <ArrowRight className="ml-2 size-4" />
-                </Link>
-              </CardContent>
-            </Card>
+                  <CardContent className="p-8 relative z-10 flex flex-col h-full">
+                    <item.icon className={cn(`mb-6 size-12`, item.textColor)} />
+                    <h3 className="mb-3 text-2xl font-bold">{item.title}</h3>
+                    <p className="mb-8 text-muted-foreground flex-1">
+                      {item.desc}
+                    </p>
+                    <Link
+                      href={item.href}
+                      className={cn(buttonVariants({ size: 'default' }), item.bgColor, item.hoverBgColor, "w-fit group-hover:pl-6 transition-all")}
+                    >
+                      {item.linkText}
+                      <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-2" />
+                    </Link>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </section>
 
         {/* How it works */}
-        <section className="bg-background py-16">
+        <section className="bg-muted/10 py-24 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent z-[-1]" />
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="mb-12 text-center text-3xl font-bold tracking-tight">How EthioJobs Marketplace Works</h2>
-            <div className="grid gap-8 md:grid-cols-2">
-              <div className="space-y-6">
-                <h3 className="text-xl font-semibold text-primary">For Clients</h3>
-                <div className="space-y-4">
-                  <div className="flex gap-4">
-                    <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">1</div>
-                    <div>
-                      <h4 className="font-medium">Post a job or browse catalog</h4>
-                      <p className="text-sm text-muted-foreground">Tell us what you need done, or browse ready-to-buy services.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">2</div>
-                    <div>
-                      <h4 className="font-medium">Choose the best freelancer</h4>
-                      <p className="text-sm text-muted-foreground">Review proposals, conduct interviews, and hire your favorite.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">3</div>
-                    <div>
-                      <h4 className="font-medium">Pay securely</h4>
-                      <p className="text-sm text-muted-foreground">Fund milestones upfront, and release payment only when you approve the work.</p>
-                    </div>
-                  </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-3xl font-bold tracking-tight">How EthioJobs Marketplace Works</h2>
+              <p className="mt-4 text-muted-foreground">Everything you need to know to get started.</p>
+            </motion.div>
+
+            <div className="grid gap-12 md:grid-cols-2">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="space-y-8 p-8 rounded-3xl bg-card border shadow-sm"
+              >
+                <h3 className="text-2xl font-semibold text-primary flex items-center gap-3">
+                  <Building2 className="size-6" /> For Clients
+                </h3>
+                <div className="space-y-6">
+                  {[
+                    { title: "Post a job or browse catalog", desc: "Tell us what you need done, or browse ready-to-buy services." },
+                    { title: "Choose the best freelancer", desc: "Review proposals, conduct interviews, and hire your favorite." },
+                    { title: "Pay securely", desc: "Fund milestones upfront, and release payment only when you approve the work." }
+                  ].map((step, i) => (
+                    <motion.div
+                      key={i}
+                      whileHover={{ x: 5 }}
+                      className="flex gap-5 p-4 rounded-xl hover:bg-primary/5 transition-colors"
+                    >
+                      <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold shadow-md">{i + 1}</div>
+                      <div>
+                        <h4 className="font-semibold text-lg">{step.title}</h4>
+                        <p className="text-muted-foreground mt-1">{step.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
-              </div>
-              <div className="space-y-6">
-                <h3 className="text-xl font-semibold text-blue-600">For Freelancers</h3>
-                <div className="space-y-4">
-                  <div className="flex gap-4">
-                    <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-blue-600 font-bold">1</div>
-                    <div>
-                      <h4 className="font-medium">Create a strong profile</h4>
-                      <p className="text-sm text-muted-foreground">Showcase your skills, experience, and portfolio to stand out.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-blue-600 font-bold">2</div>
-                    <div>
-                      <h4 className="font-medium">Submit proposals & sell services</h4>
-                      <p className="text-sm text-muted-foreground">Bid on active jobs or create catalog listings for clients to buy.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-blue-600 font-bold">3</div>
-                    <div>
-                      <h4 className="font-medium">Get paid safely</h4>
-                      <p className="text-sm text-muted-foreground">Work with peace of mind knowing the client has funded the milestone.</p>
-                    </div>
-                  </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="space-y-8 p-8 rounded-3xl bg-card border shadow-sm"
+              >
+                <h3 className="text-2xl font-semibold text-blue-600 flex items-center gap-3">
+                  <Briefcase className="size-6" /> For Freelancers
+                </h3>
+                <div className="space-y-6">
+                  {[
+                    { title: "Create a strong profile", desc: "Showcase your skills, experience, and portfolio to stand out." },
+                    { title: "Submit proposals & sell services", desc: "Bid on active jobs or create catalog listings for clients to buy." },
+                    { title: "Get paid safely", desc: "Work with peace of mind knowing the client has funded the milestone." }
+                  ].map((step, i) => (
+                    <motion.div
+                      key={i}
+                      whileHover={{ x: 5 }}
+                      className="flex gap-5 p-4 rounded-xl hover:bg-blue-500/5 transition-colors"
+                    >
+                      <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white font-bold shadow-md">{i + 1}</div>
+                      <div>
+                        <h4 className="font-semibold text-lg">{step.title}</h4>
+                        <p className="text-muted-foreground mt-1">{step.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
-        <section className="border-y bg-muted/50 py-12">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid divide-y sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-              {stats.map((stat) => {
+        <section className="border-y bg-primary text-primary-foreground py-16 relative overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay z-0"
+          >
+            <source src="https://cdn.pixabay.com/video/2018/11/27/19441-303723707_large.mp4" type="video/mp4" />
+          </video>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {stats.map((stat, i) => {
                 const Icon = stat.icon;
                 return (
-                  <div
+                  <motion.div
                     key={stat.label}
-                    className="flex items-center justify-center gap-4 py-6 sm:py-0"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                    className="flex flex-col items-center justify-center gap-3 py-6 text-center"
                   >
-                    <div className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <Icon className="size-6" />
+                    <div className="flex size-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm text-white mb-2 shadow-lg">
+                      <Icon className="size-7" />
                     </div>
                     <div>
-                      <p className="text-2xl font-bold">{stat.value}</p>
-                      <p className="text-sm text-muted-foreground">{stat.label}</p>
+                      <p className="text-4xl font-bold mb-1">{stat.value}</p>
+                      <p className="text-primary-foreground/80 font-medium">{stat.label}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
