@@ -72,6 +72,7 @@ export default function Sidebar() {
         <button
           onClick={closeSidebar}
           className="p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+          aria-label="Close sidebar"
         >
           <X className="size-4" />
         </button>

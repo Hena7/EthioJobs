@@ -17,6 +17,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           <button
             onClick={toggleSidebar}
             className="md:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            aria-label="Toggle sidebar"
           >
             <Menu className="size-5" />
           </button>
