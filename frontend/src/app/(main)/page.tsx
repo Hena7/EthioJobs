@@ -71,7 +71,7 @@ export default function HomePage() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover z-[-1]"
           >
-            <source src="https://cdn.pixabay.com/video/2021/08/18/85429-590038848_large.mp4" type="video/mp4" />
+            <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-background/80 backdrop-blur-[2px] z-[-1]" />
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent z-[-1]" />
@@ -232,7 +232,7 @@ export default function HomePage() {
                 gradientTo: "to-primary/10",
                 bgColor: "",
                 hoverBgColor: "",
-                video: "https://cdn.pixabay.com/video/2021/02/10/64700-510850259_large.mp4"
+                video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
               },
               {
                 icon: Briefcase,
@@ -246,7 +246,7 @@ export default function HomePage() {
                 gradientTo: "to-blue-500/10",
                 bgColor: "bg-blue-500",
                 hoverBgColor: "hover:bg-blue-600",
-                video: "https://cdn.pixabay.com/video/2020/05/11/38914-421714881_large.mp4"
+                video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
               },
               {
                 icon: Medal,
@@ -260,7 +260,7 @@ export default function HomePage() {
                 gradientTo: "to-purple-500/10",
                 bgColor: "bg-purple-500",
                 hoverBgColor: "hover:bg-purple-600",
-                video: "https://cdn.pixabay.com/video/2019/11/13/29032-372990666_large.mp4"
+                video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
               }
             ].map((item, i) => (
               <motion.div
@@ -390,7 +390,7 @@ export default function HomePage() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay z-0"
           >
-            <source src="https://cdn.pixabay.com/video/2018/11/27/19441-303723707_large.mp4" type="video/mp4" />
+            <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4" type="video/mp4" />
           </video>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
