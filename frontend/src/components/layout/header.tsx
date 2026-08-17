@@ -1,30 +1,28 @@
 'use client';
 
-import Link from 'next/link';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { ThemeToggle } from '@/components/layout/theme-toggle';
 import {
   Briefcase,
   Bell,
   Menu,
   X,
-  ChevronDown,
-  Home,
-  Search,
-  Building2,
-  Store,
   User,
-  LayoutDashboard,
   LogOut,
+  LayoutDashboard,
+  Store,
+  Building2,
+  ChevronDown,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/store/authStore';
-import { useUnreadCount } from '@/hooks/useNotifications';
 import { useUIStore } from '@/store/uiStore';
-import { useState } from 'react';
+import { useUnreadCount } from '@/hooks/useNotifications';
 
 const navLinks = [
-  { label: 'Home', href: '/', icon: Home },
-  { label: 'Find Jobs', href: '/jobs', icon: Search },
+  { label: 'Find Jobs', href: '/jobs', icon: Briefcase },
   { label: 'Find Talent', href: '/talent', icon: User },
   { label: 'Catalog', href: '/catalog', icon: Store },
   { label: 'Companies', href: '/companies', icon: Building2 },
@@ -79,6 +77,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           {isAuthenticated && user ? (
             <div className="flex items-center gap-2">
+              <ThemeToggle />
               <Link
                 href="/notifications"
                 className="relative p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
@@ -144,6 +143,7 @@ export default function Header() {
             </div>
           ) : (
             <div className="hidden md:flex items-center gap-2">
+              <ThemeToggle />
               <Link href="/auth/login">
                 <Button variant="ghost">Login</Button>
               </Link>
@@ -165,7 +165,11 @@ export default function Header() {
       {mobileOpen && (
         <>
           <div className="fixed inset-0 z-40 bg-black/50" onClick={() => setMobileOpen(false)} />
-          <div className="fixed top-16 right-0 z-50 h-[calc(100vh-4rem)] w-72 border-l border-border bg-background p-4 shadow-lg">
+          <div className="fixed top-16 right-0 z-50 h-[calc(100vh-4rem)] w-72 border-l border-border bg-background p-4 shadow-lg overflow-y-auto">
+            <div className="flex items-center justify-between px-3 py-2 mb-2 border-b border-border pb-4">
+              <span className="text-sm font-medium">Theme</span>
+              <ThemeToggle />
+            </div>
             <nav className="flex flex-col gap-1">
               {navLinks.map((link) => {
                 const Icon = link.icon;
