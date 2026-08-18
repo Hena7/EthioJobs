@@ -71,7 +71,8 @@ export default function Sidebar() {
         <span className="font-semibold text-sm">Navigation</span>
         <button
           onClick={closeSidebar}
-          className="p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+          className="p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          aria-label="Close navigation sidebar"
         >
           <X className="size-4" />
         </button>
