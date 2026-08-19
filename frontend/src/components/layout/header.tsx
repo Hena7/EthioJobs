@@ -92,6 +92,8 @@ export default function Header() {
               <div className="relative hidden md:block">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
+                  aria-expanded={userMenuOpen}
+                  aria-label="User menu"
                   className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-muted transition-colors"
                 >
                   <div className="flex size-8 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold text-sm">
@@ -156,6 +158,8 @@ export default function Header() {
           <button
             className="md:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
+            aria-expanded={mobileOpen}
+            aria-label="Toggle mobile menu"
           >
             {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
