@@ -75,7 +75,7 @@ export default function JobApplicantsPage() {
     <div className="space-y-6">
       <div className="flex items-center gap-4">
         <Link href="/dashboard/employer/jobs">
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" aria-label="Go back to jobs">
             <ArrowLeft className="size-4" />
           </Button>
         </Link>
