@@ -276,7 +276,7 @@ export default function ApplicantDetailPage() {
       {/* ── breadcrumb back ── */}
       <div className="flex items-center gap-3">
         <Link href={`/dashboard/employer/jobs/${jobId}/applicants`}>
-          <Button variant="ghost" size="icon" className="shrink-0">
+          <Button variant="ghost" size="icon" className="shrink-0" aria-label="Go back to applicants">
             <ArrowLeft className="size-4" />
           </Button>
         </Link>

@@ -141,7 +141,7 @@ export default function MessagesPage() {
             onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(e as never); } }}
             className="flex-1"
           />
-          <Button type="submit" disabled={!selectedId || !body.trim() || sendMessage.isPending} size="icon">
+          <Button type="submit" disabled={!selectedId || !body.trim() || sendMessage.isPending} size="icon" aria-label="Send message">
             <Send className="size-4" />
           </Button>
         </form>
