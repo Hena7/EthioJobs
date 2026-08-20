@@ -71,6 +71,7 @@ export default function Sidebar() {
         <span className="font-semibold text-sm">Navigation</span>
         <button
           onClick={closeSidebar}
+          aria-label="Close sidebar"
           className="p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
         >
           <X className="size-4" />
