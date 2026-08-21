@@ -94,7 +94,7 @@ function JobsPageContent() {
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight">Find Jobs</h1>
         {!isLoading && !isError && (
-          <p className="mt-1 text-muted-foreground">
+          <p className="mt-1 text-muted-foreground" aria-live="polite" aria-atomic="true">
             {totalElements} {totalElements === 1 ? 'job' : 'jobs'} found
           </p>
         )}
