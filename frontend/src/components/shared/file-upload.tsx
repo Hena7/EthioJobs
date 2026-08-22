@@ -109,7 +109,7 @@ export function FileUpload({
         onDragLeave={handleDragLeave}
         onClick={() => inputRef.current?.click()}
         className={cn(
-          'flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed p-8 transition-colors',
+          'flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed p-8 transition-colors focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
           isDragOver
             ? 'border-primary bg-primary/5'
             : 'border-muted-foreground/25 hover:border-muted-foreground/50',
@@ -121,7 +121,8 @@ export function FileUpload({
           type="file"
           accept={accept}
           onChange={handleInputChange}
-          className="hidden"
+          className="sr-only"
+          aria-label="Upload file"
         />
         {file ? (
           <div className="flex items-center gap-3" onClick={(e) => e.stopPropagation()}>
@@ -135,7 +136,9 @@ export function FileUpload({
             <button
               type="button"
               onClick={removeFile}
-              className="ml-2 rounded-full p-1 hover:bg-muted"
+              className="ml-2 rounded-full p-1 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              aria-label="Remove file"
+              title="Remove file"
             >
               <X className="size-4 text-muted-foreground" />
             </button>
