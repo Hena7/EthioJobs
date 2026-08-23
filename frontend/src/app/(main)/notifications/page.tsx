@@ -4,7 +4,7 @@ import { useMyNotifications, useMarkAsRead, useMarkAllAsRead } from '@/hooks/use
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Bell, Check, CheckCircle2, AlertCircle, Clock, Trash2 } from 'lucide-react';
+import { Bell, Check, CheckCircle2, AlertCircle, Clock, Trash2, Loader2 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
@@ -87,7 +87,11 @@ export default function NotificationsPage() {
             disabled={isMarkingAll}
             className="shrink-0"
           >
-            <CheckCircle2 className="mr-2 size-4" />
+            {isMarkingAll ? (
+              <Loader2 className="mr-2 size-4 animate-spin" />
+            ) : (
+              <CheckCircle2 className="mr-2 size-4" />
+            )}
             Mark all as read
           </Button>
         )}
@@ -149,9 +153,14 @@ export default function NotificationsPage() {
                       onClick={() => handleMarkAsRead(notification.id)}
                       disabled={isMarking && markingId === notification.id}
                       title="Mark as read"
+                      aria-label="Mark as read"
                       className="text-muted-foreground hover:text-primary hover:bg-primary/10 h-8 w-8"
                     >
-                      <Check className="size-4" />
+                      {isMarking && markingId === notification.id ? (
+                        <Loader2 className="size-4 animate-spin" />
+                      ) : (
+                        <Check className="size-4" />
+                      )}
                       <span className="sr-only">Mark as read</span>
                     </Button>
                   </div>
