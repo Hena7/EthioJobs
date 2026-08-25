@@ -1,0 +1,3 @@
+## 2023-10-25 - Password Visibility Toggle Accessibility
+**Learning:** Found an accessibility anti-pattern in password inputs where the visibility toggle button explicitly blocked keyboard focus with `tabIndex={-1}` and lacked `aria-label`s. This prevents screen reader users and keyboard-only navigators from understanding or utilizing the toggle feature, making the password entry process harder for them to manage.
+**Action:** When adding interactive elements like visibility toggles inside input wrappers, always ensure they are keyboard focusable, have clear `aria-label`s based on their state, apply `aria-hidden` to their inner icon SVGs, and have visible focus states.
