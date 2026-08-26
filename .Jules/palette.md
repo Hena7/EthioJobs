@@ -1,0 +1,1 @@
+## 2024-08-26 - Keyboard navigation for password toggles\n**Learning:** The password visibility toggles in the auth forms had `tabIndex={-1}` which prevents keyboard users from focusing them.\n**Action:** Consider removing `tabIndex={-1}` from interactive elements unless explicitly needed to keep focus flow intuitive.

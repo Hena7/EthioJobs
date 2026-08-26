@@ -27,6 +27,7 @@ function BookmarkCard({
         onClick={() => onRemove(job.id)}
         className="absolute right-3 top-3 flex size-8 items-center justify-center rounded-full text-red-500 opacity-0 transition-opacity hover:bg-red-50 group-hover:opacity-100 dark:hover:bg-red-950/50"
         title="Remove bookmark"
+        aria-label="Remove bookmark"
       >
         <Trash2 className="size-4" />
       </button>
