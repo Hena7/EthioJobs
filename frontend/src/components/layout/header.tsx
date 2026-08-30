@@ -80,11 +80,12 @@ export default function Header() {
               <ThemeToggle />
               <Link
                 href="/notifications"
-                className="relative p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                aria-label={unreadCount > 0 ? `${unreadCount} unread notifications` : "Notifications"}
+                className="relative p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
-                <Bell className="size-5" />
+                <Bell className="size-5" aria-hidden="true" />
                 {unreadCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">
+                  <span aria-hidden="true" className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">
                     {unreadCount > 9 ? '9+' : unreadCount}
                   </span>
                 )}
@@ -94,7 +95,7 @@ export default function Header() {
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
                   aria-expanded={userMenuOpen}
                   aria-label="User menu"
-                  className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-muted transition-colors"
+                  className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   <div className="flex size-8 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold text-sm">
                     {user.name.charAt(0).toUpperCase()}
@@ -156,12 +157,12 @@ export default function Header() {
           )}
 
           <button
-            className="md:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            className="md:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-expanded={mobileOpen}
             aria-label="Toggle mobile menu"
           >
-            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            {mobileOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -209,14 +210,17 @@ export default function Header() {
                 <Link
                   href="/notifications"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm hover:bg-muted transition-colors"
+                  className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
-                  <Bell className="size-4" />
+                  <Bell className="size-4" aria-hidden="true" />
                   Notifications
                   {unreadCount > 0 && (
-                    <span className="ml-auto flex size-5 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">
-                      {unreadCount}
-                    </span>
+                    <>
+                      <span aria-hidden="true" className="ml-auto flex size-5 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">
+                        {unreadCount}
+                      </span>
+                      <span className="sr-only">({unreadCount} unread)</span>
+                    </>
                   )}
                 </Link>
                 <button
