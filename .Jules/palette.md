@@ -1,0 +1,3 @@
+## 2024-05-18 - Missing ARIA Labels and Focus States
+**Learning:** Found multiple icon-only interactive elements in the main navigation (e.g., Notifications, User Menu, Theme Toggle) that lacked ARIA labels and focus states for keyboard users. This is a common pattern when utilizing icons without text labels where accessibility states are easily overlooked.
+**Action:** Consistently ensure that all newly created icon-only links or buttons are provided with an `aria-label` and the standard focus ring classes: `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background`.

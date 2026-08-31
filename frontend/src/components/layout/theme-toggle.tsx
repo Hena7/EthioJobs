@@ -17,7 +17,7 @@ export function ThemeToggle() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="relative h-9 w-9 rounded-full bg-transparent hover:bg-accent flex items-center justify-center transition-colors">
+      <DropdownMenuTrigger aria-label="Toggle theme" className="relative h-9 w-9 rounded-full bg-transparent hover:bg-accent flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background">
         <motion.div
           initial={false}
           animate={{ rotate: 0, scale: 1 }}
