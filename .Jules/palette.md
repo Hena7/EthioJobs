@@ -1,0 +1,3 @@
+## 2024-05-24 - Focus Rings & ARIA Labels on Core Layout
+**Learning:** Core layout components (Header, Sidebar, Theme Toggle) heavily rely on icon-only buttons (`lucide-react`) without explicit `aria-label`s and lacked consistent `focus-visible` styling for keyboard navigation. Adding `focus-visible` ring utility classes from Tailwind and `aria-label`s greatly improves screen reader and keyboard user experience in a non-disruptive way.
+**Action:** Ensure all new icon-only buttons use explicit `aria-label`s, and apply `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background` to all interactive layout components.
