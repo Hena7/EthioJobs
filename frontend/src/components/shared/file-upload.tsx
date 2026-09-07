@@ -101,15 +101,26 @@ export function FileUpload({
     if (inputRef.current) inputRef.current.value = '';
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      inputRef.current?.click();
+    }
+  };
+
   return (
     <div className={cn('space-y-2', className)}>
       <div
+        role="button"
+        tabIndex={0}
+        aria-label="Upload file"
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onClick={() => inputRef.current?.click()}
+        onKeyDown={handleKeyDown}
         className={cn(
-          'flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed p-8 transition-colors',
+          'flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed p-8 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background',
           isDragOver
             ? 'border-primary bg-primary/5'
             : 'border-muted-foreground/25 hover:border-muted-foreground/50',
@@ -135,7 +146,8 @@ export function FileUpload({
             <button
               type="button"
               onClick={removeFile}
-              className="ml-2 rounded-full p-1 hover:bg-muted"
+              aria-label="Remove file"
+              className="ml-2 rounded-full p-1 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <X className="size-4 text-muted-foreground" />
             </button>
