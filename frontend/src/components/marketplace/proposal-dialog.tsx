@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { DollarSign, Send } from 'lucide-react';
+import { DollarSign, Send, Loader2 } from 'lucide-react';
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
 } from '@/components/ui/dialog';
@@ -87,7 +87,7 @@ export function ProposalDialog({ open, onOpenChange, jobTitle, companyName, fixe
               <Label>Timeline</Label>
               <div className="flex flex-wrap gap-1.5">
                 {DURATION_OPTIONS.map((d) => (
-                  <button key={d} type="button" onClick={() => setSelectedDuration(d === selectedDuration ? '' : d)}
+                  <button key={d} type="button" aria-pressed={selectedDuration === d} onClick={() => setSelectedDuration(d === selectedDuration ? '' : d)}
                     className={`rounded-full border px-2.5 py-1 text-xs transition-colors ${selectedDuration === d ? 'border-primary bg-primary text-primary-foreground' : 'border-border hover:border-primary hover:text-primary'}`}>
                     {d}
                   </button>
@@ -98,7 +98,8 @@ export function ProposalDialog({ open, onOpenChange, jobTitle, companyName, fixe
           <div className="flex justify-end gap-3 border-t pt-4">
             <Button type="button" variant="outline" onClick={handleClose}>Cancel</Button>
             <Button type="submit" disabled={isSubmitting} className="gap-2">
-              <Send className="size-4" />{isSubmitting ? 'Submitting...' : 'Submit Proposal'}
+              {isSubmitting ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" />}
+              {isSubmitting ? 'Submitting...' : 'Submit Proposal'}
             </Button>
           </div>
         </form>
