@@ -1,3 +1,7 @@
 ## 2024-05-18 - Missing ARIA Labels and Focus States
 **Learning:** Found multiple icon-only interactive elements in the main navigation (e.g., Notifications, User Menu, Theme Toggle) that lacked ARIA labels and focus states for keyboard users. This is a common pattern when utilizing icons without text labels where accessibility states are easily overlooked.
 **Action:** Consistently ensure that all newly created icon-only links or buttons are provided with an `aria-label` and the standard focus ring classes: `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background`.
+
+## 2024-11-20 - Ensure focus states for interactive elements inside inputs
+**Learning:** Found that absolute positioned interactive elements within inputs (like "Show password" toggles) often have their tabIndex set to -1 incorrectly, bypassing keyboard accessibility. Even if they don't, they are prone to lacking proper `focus-visible` outline styles, making it impossible for keyboard users to know they've focused the interactive element.
+**Action:** When adding or reviewing interactive elements nested within form inputs (like clear buttons or toggle visibility buttons), ensure they do not have `tabIndex={-1}`, include appropriate `aria-label`, and use standard Tailwind focus classes (`focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2`) so keyboard users can navigate to and activate them.
