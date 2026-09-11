@@ -140,17 +140,17 @@ export default function MyJobsPage() {
                           <TableCell className="text-right">
                             <div className="flex items-center justify-end gap-1">
                               <Link href={`/dashboard/employer/jobs/${job.id}/edit`}>
-                                <Button variant="ghost" size="icon-xs">
+                                <Button variant="ghost" size="icon-xs" aria-label="Edit job">
                                   <Edit className="size-3.5" />
                                 </Button>
                               </Link>
                               <Link href={`/dashboard/employer/jobs/${job.id}/applicants`}>
-                                <Button variant="ghost" size="icon-xs">
+                                <Button variant="ghost" size="icon-xs" aria-label="View applicants">
                                   <Eye className="size-3.5" />
                                 </Button>
                               </Link>
                               <Link href={`/dashboard/employer/jobs/${job.id}/proposals`}>
-                                <Button variant="ghost" size="icon-xs">
+                                <Button variant="ghost" size="icon-xs" aria-label="View proposals">
                                   <MessageSquare className="size-3.5" />
                                 </Button>
                               </Link>
@@ -158,6 +158,7 @@ export default function MyJobsPage() {
                                 variant="ghost"
                                 size="icon-xs"
                                 onClick={() => toggleStatus(job)}
+                                aria-label="Toggle status"
                               >
                                 <ArchiveRestore className="size-3.5" />
                               </Button>
