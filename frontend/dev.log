@@ -1,0 +1,11 @@
+
+> frontend@0.1.0 dev /app/frontend
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 560ms
+
+○ Compiling /auth/login ...
+ GET /auth/login?redirect=%2Fdashboard%2Femployer%2Fjobs 200 in 5.6s (next.js: 4.8s, application-code: 799ms)
