@@ -72,7 +72,7 @@ export default function Sidebar() {
         <button
           onClick={closeSidebar}
           aria-label="Close sidebar"
-          className="p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+          className="p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           <X className="size-4" />
         </button>
