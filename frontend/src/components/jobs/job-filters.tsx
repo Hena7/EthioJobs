@@ -67,7 +67,8 @@ function FilterSection({ title, icon, defaultOpen = true, children }: FilterSect
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="mb-2 flex w-full items-center justify-between text-sm font-medium text-foreground"
+        aria-expanded={open}
+        className="mb-2 flex w-full items-center justify-between text-sm font-medium text-foreground rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
         <span className="flex items-center gap-2">
           {icon}
@@ -302,7 +303,8 @@ export function JobFiltersPanel({
                 <button
                   type="button"
                   onClick={() => setMobileOpen(false)}
-                  className="rounded-full p-1 hover:bg-muted"
+                  aria-label="Close filters"
+                  className="rounded-full p-1 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   <X className="size-5" />
                 </button>
