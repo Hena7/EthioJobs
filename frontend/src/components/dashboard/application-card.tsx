@@ -191,7 +191,9 @@ export function ApplicationCard({
           <button
             type="button"
             onClick={() => setShowCoverLetter(!showCoverLetter)}
-            className="flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground"
+            aria-expanded={showCoverLetter}
+            aria-controls="cover-letter-content"
+            className="flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground rounded-md px-1 py-0.5 -ml-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             {showCoverLetter ? (
               <ChevronUp className="size-3.5" />
@@ -201,7 +203,7 @@ export function ApplicationCard({
             Cover Letter
           </button>
           {showCoverLetter && (
-            <p className="mt-2 whitespace-pre-wrap rounded-md bg-muted p-3 text-sm text-muted-foreground">
+            <p id="cover-letter-content" className="mt-2 whitespace-pre-wrap rounded-md bg-muted p-3 text-sm text-muted-foreground">
               {application.coverLetter}
             </p>
           )}

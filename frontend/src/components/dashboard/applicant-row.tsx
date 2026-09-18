@@ -122,6 +122,8 @@ export function ApplicantRow({
             size="xs"
             onClick={() => setStatusOpen(!statusOpen)}
             disabled={isUpdating}
+            aria-expanded={statusOpen}
+            aria-haspopup="listbox"
             className="gap-1"
           >
             Update Status
@@ -161,9 +163,11 @@ export function ApplicantRow({
         <Link
           href={`/dashboard/employer/jobs/${application.job.id}/applicants/${application.id}`}
           title="View full profile"
+          className="rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
-          <Button variant="ghost" size="icon-xs">
+          <Button variant="ghost" size="icon-xs" tabIndex={-1}>
             <ExternalLink className="size-3.5" />
+            <span className="sr-only">View full profile</span>
           </Button>
         </Link>
       </div>
