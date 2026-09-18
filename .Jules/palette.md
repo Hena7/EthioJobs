@@ -1,3 +1,7 @@
 ## 2024-05-18 - Missing ARIA Labels and Focus States
 **Learning:** Found multiple icon-only interactive elements in the main navigation (e.g., Notifications, User Menu, Theme Toggle) that lacked ARIA labels and focus states for keyboard users. This is a common pattern when utilizing icons without text labels where accessibility states are easily overlooked.
 **Action:** Consistently ensure that all newly created icon-only links or buttons are provided with an `aria-label` and the standard focus ring classes: `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background`.
+
+## 2024-05-19 - Missing aria-expanded in Accordions and Dropdowns
+**Learning:** Found multiple toggle buttons (e.g., custom dropdowns for 'Update Status' and accordion toggles for 'Cover Letter') that lacked the `aria-expanded` attribute. This is a crucial omission because screen reader users are not informed about the expanded/collapsed state of the content they control. Additionally, icon-only link buttons without accessible names (like `sr-only` text or `aria-label`) were identified.
+**Action:** Always verify that toggle buttons controlling the visibility of other content include `aria-expanded` dynamically reflecting their state, and that all icon-only interactive elements contain screen-reader text or an `aria-label`. Ensure interactive elements also have robust focus rings (e.g., `focus-visible:ring-primary`).
